@@ -23,24 +23,14 @@ $grey_xl:	#ddd8e0;
 	-moz-box-sizing: $method;
 	-o-box-sizing: $method;
 }
-@mixin input_style(){
-	float: left;
-	width: 96%;
-	margin: 10px 2%;
-	background: $green;
-	color: black;
-	padding: 5px 15px 10px;
-	line-height: 50px;
-	border: none;
-	//border-bottom: 5px solid $green_xd;
-	font-size: 1.5rem;
-	font-weight: 200;
-	font-family: "Roboto";
-	border-radius: 1px;
-	background-image: -webkit-linear-gradient(left,  $green_d 0%, $green_d 100%);
-	background-size: 100% 5px;
-  	background-position: 0 100%, 0 0;
-  	background-repeat:no-repeat;
+
+@mixin greenBG(){
+	background: $green_xd;
+	background-image: url(../img/front-green.jpg);
+	background-size: cover;
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
 
 @mixin highlight_gradient(){
@@ -53,26 +43,68 @@ $grey_xl:	#ddd8e0;
 	background-image: linear-gradient(to right,  #006644 0%,#ffe400 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#006644', endColorstr='#ffe400',GradientType=1 );
 }
+@mixin inputStyle(){
+	margin: 10px 2%;
+	color: black;
+	padding: 5px 15px 10px;
+	line-height: 50px;
+	border: none;
+}
+@mixin inputColors($color, $backgroundColor, $borderColor){
+	color: $color;
+	
+	background: $backgroundColor;
+	background-image: -webkit-linear-gradient(left,  $borderColor 0%, $borderColor 100%);
+	background-size: 100% 5px;
+  	background-position: 0 100%, 0 0;
+  	background-repeat:no-repeat;
+  	input{
+	  	border-color: $color;
+  	}
+}
 
+@mixin inputFields(){
+	font-size: 1.5rem;
+	font-weight: 200;
+	font-family: "Roboto";
+  	-webkit-appearance: none;
+  	-webkit-border-radius:1px;
+	-moz-border-radius:1px;
+	border-radius:1px;
+	&:focus{
+	   	color: $yellow;
+	    outline: none;
+	 	-webkit-box-shadow: none;
+	 	-moz-box-shadow: none;
+		box-shadow: none;		
+	 	@include highlight_gradient();
+    }
+}
 body{
 	font-family: "Roboto", sans-serif;
-	background: $green;
+	background: white;
 	color: $green_l;
 	padding: 0;
 	margin: 0;
+	overflow-x: hidden;
 }
 h1{
-	text-align: center;
+	text-align: left;
 	font-weight: 100;
 	font-size: 4rem;
 	color: white;
+
 }
 
 h2{
 	text-align: center;
 	font-weight: 700;
 	font-style: oblique;
-	font-size: 2rem;
+	font-size: 2.4rem;
+	
+}
+h3{
+	
 }
 
 .block{
@@ -95,6 +127,107 @@ h2{
 	background: $green_l;
 }
 
+label{
+	display: block;
+	width: 90%;
+	float: left;
+	text-align: left;
+	margin: 30px 5% 0;
+	color: $green_l;
+	text-transform: uppercase;
+	text-shadow: 1px 2px 0 $green_d;
+	height: 20px;
+	@include border_size(border-box);
+}
+input{
+	float: left;
+	width: 96%;
+	@include inputStyle();
+	@include inputColors(black, $green, $green_d);
+	@include inputFields();
+	
+	transition: all .5s; 
+	@include border_size(border-box);
+	&::-webkit-input-placeholder{
+		color: $green_l;
+	} 
+	&[type=radio]{
+		display: block;
+		height: 30px;
+		width: 30px;
+		margin: 5px 10px;
+		background: transparent !important;
+		border: 2px solid;
+		border-radius: 100%;
+		
+		&:after{
+			position:absolute;
+	        font-family: FontAwesome;
+	        top:0;
+	        left:-5px;
+	        content: "\25AE";
+		}
+	}
+}
+select{
+	@include inputStyle();
+	@include inputFields();
+	@include inputColors($green_l ,$green, $green_d);
+}
+
+span.inputs{
+	//width: 60%;
+	display: block;
+	float: left;
+	text-align: left;
+	width: 100%;
+	margin: 2%;
+	
+	label{
+		width: inherit;
+		text-align: left;
+		@include inputFields();
+		@include inputColors(grey,$grey_l, $grey_xl);
+		text-shadow: none;
+		height: auto;
+		padding: 15px 0 10px;
+		line-height: 2.4rem;
+		&.choice{
+								//text-align: left;	
+		}
+		&.separate_line{
+			display: block;
+			clear: both;
+		}
+		&.yes{
+			@include inputColors($green_xd, rgba($green,.5), $green_d);
+			text-align: right;
+			input{
+				float: right
+			}
+		}
+		&.no{
+			@include inputColors($red, rgba($red,.5), $red);
+			text-align: left;
+		}
+		&.female{
+			@include inputColors($red, rgba($red,.5), $red);
+			text-align: right;
+			input{
+				float: right;
+			}
+		}
+		&.male{
+			@include inputColors($blue, rgba($blue,.5), $blue);
+			text-align: left;
+		}
+		&.yes, &.no, &.female, &.male{
+			width: 44%;
+			margin: 0 4% 0 0;
+		}
+	}
+}
+
 
 .wrapper{
 	width: $laptop;
@@ -115,13 +248,32 @@ a.btn{
 	width: 100%;
 	margin: 0 auto;
 	background: $green_xd;
-	
+	overflow-x: hidden;
+	fieldset#logSignIn{
+		
+	}
 	#welcome{
 		padding: 1px 0;
-		padding: 65px 0;
+		background: $green_xd;
+		background-image:  url(../img/front.jpg);
+		background-size: cover;
+		background-position: center top;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		
 		img{
-			display: block;
-			margin: auto;
+			margin: 20px 0;
+		}
+		h1{
+			position: absolute; 
+			bottom: 180px; 
+		}
+		h2{
+			color: $green_xd;
+			text-shadow: 1px 2px 0 $green_l;	
+			position: absolute; 
+			bottom: 110px;
+			margin-left: 45px;
 		}
 	}
 	#numberCheck{
@@ -137,11 +289,16 @@ a.btn{
 		transition: all .5s ease-in-out;
 		section{
 			display: none;
+			opacity: 0;
+			height: 0;
+			transition: all .5s;
 		}
 		h5, h6{
 			text-align: center;
 			color: $green_xd;
-			margin: 10px;
+			margin: 10px auto 0;
+			opacity: 1;
+			transition: all .5s;
 		}
 		h6{
 			text-transform: uppercase;
@@ -161,25 +318,10 @@ a.btn{
 			transform: rotateZ(0deg);
 			section{
 				display: block;
+				opacity: 1;
+				height: auto;
 				input{
-					@include input_style();
-					transition: all .5s; 
-					@include border_size(border-box);
-					&::-webkit-input-placeholder{
-					    color: $green_l;
-					} 
-					&::-webkit-input-placeholder, &:-moz-placeholder, &::-moz-placeholder, &:-ms-input-placeholder{
-						color: $green_l;
-					}
-					&:focus{
-					   	color: $yellow;
-					    outline: none;
-					 	-webkit-box-shadow: none;
-					 	-moz-box-shadow: none;
-					 	box-shadow: none;
-						
-					 	@include highlight_gradient();
-				    }
+					
 				 }
 			}
 			h5, h6{
@@ -193,7 +335,9 @@ a.btn{
 	#wizard{
 		color: white;
 		overflow: auto;
-		margin-bottom: 25px;
+		padding-bottom: 50px;
+		@include greenBG();
+		width: 100%;
 		div{
 			@include border_size(border-box);
 			padding: 10px;
@@ -253,7 +397,7 @@ a.btn{
 		border: 0;
 		padding: 0;
 		height: auto;
-		
+		@include greenBG();
 		-webkit-transition: all 0.5s ease-in-out;
 		-moz-transition: all 0.5s ease-in-out;
 		-ms-transition: all 0.5s ease-in-out;
@@ -261,13 +405,14 @@ a.btn{
 		
 		@include border_size(border-box);
 		header{
+			
 			legend{
 				height: 50px;
 				font-size: 2rem;
 				font-weight: 100;
 				color: $yellow;
-				margin-left: 45px;
-				padding: 0 15px;
+				margin-left: 30px;
+				padding: 0;
 				line-height: 2.5rem;
 				vertical-align: top;
 				overflow: hidden;
@@ -277,11 +422,15 @@ a.btn{
 					line-height: 2.8rem;
 					display: none;
 				}
+				.fa{
+					width: 70px;
+					text-align: center;
+				}
 			}
 		}
 		section{
 			width: 100%;
-			background: $green_l;
+			background: white;
 			overflow: auto;
 			ol{
 				display: block;
@@ -295,117 +444,18 @@ a.btn{
 						opacity: .3;
 					}
 					label{
-						display: block;
-						width: 90%;
-						float: left;
-						text-align: left;
-						margin: 30px 5% 0;
-						color: white;
-						text-transform: uppercase;
-						text-shadow: 1px 2px 0 $green;
-						height: 20px;
-						@include border_size(border-box);
+						
 					}
 					input{
-						@include input_style();
-					    
-					    transition: all .5s; 
-					    
-					    @include border_size(border-box);
-					    
-					    
-		    
-					    &::-webkit-input-placeholder{
-						    color: $green_l;
-					    } 
-					    &::-webkit-input-placeholder, &:-moz-placeholder, &::-moz-placeholder, &:-ms-input-placeholder{
-						    color: $green_l;
-					    }
-					    &:focus{
-					    	color: $yellow;
-						    outline: none;
-						 	-webkit-box-shadow: none;
-						 	-moz-box-shadow: none;
-						 	box-shadow: none;
-						 	
-						 	@include highlight_gradient();
-
-					    }
-					    &[type="radio"], &[type="checkbox"]{
-						    width: auto;
-						    margin: 5px 10px;
-					    }
+						
 					}
 					select{
-						margin: 10px 2%;
-						background: $green;
-						color: $green_xd;
-						padding: 5px 15px 10px;
-					    line-height: 50px;
-					    border: none;
-					    //border-bottom: 5px solid $green_xd;
-					    font-size: 1.5rem;
-					    font-weight: 200;
-					    font-family: "Roboto";
-					    border-radius: 1px;
-					    background-image: -webkit-linear-gradient(left,  #006644 0%, #006644 100%);
-					    background-size: 100% 5px;
-  						background-position: 0 100%, 0 0;
-  						background-repeat:no-repeat;
-  						-webkit-border-radius:1px;
-					    -moz-border-radius:1px;
-					    border-radius:1px;
+						
 
 					}
 					span.inputs{
-						width: 60%;
-						display: block;
-						float: left;
-						text-align: left;
 						label{
-							width: inherit;
-							text-align: left;
-							&.choice{
-								//text-align: left;	
-							}
-							&.separate_line{
-								display: block;
-								clear: both;
-							}
-							&.yes{
-								color: $green;
-								text-align: right;
-								width: 48%;
-								margin: 0;
-								background: rgba($green,.3);
-								input{
-									float: right
-								}
-							}
-							&.no{
-								color: $red;
-								text-align: left;
-								width: 48%;
-								margin: 0;
-								background: rgba($red,.3);
-							}
-							&.female{
-								color: $red;
-								text-align: right;
-								width: 48%;
-								margin: 0;
-								background: rgba($red,.3);
-								input{
-									float: right
-								}
-							}
-							&.male{
-								color: $blue;
-								text-align: left;
-								width: 48%;
-								margin: 0;
-								background: rgba($blue,.3);
-							}
+							
 	
 						}
 					}
