@@ -10,12 +10,15 @@ $green_xd:	#006644;
 $green_d:	#009966;
 $green: 	#55BB88;
 $green_l: 	#8cd6af;
+$green_xl: 	#b0f0cc;
 $yellow: 	#ffe400;
 $red: 		#db3900;
 $blue: 		#1185d0;
-$grey:		#807a84;
-$grey_l:	#b8b3bc;
-$grey_xl:	#ddd8e0;
+$grey_xd:	#414A4C;
+$grey_d:	#a9a9a9;
+$grey:		#999999;
+$grey_l:	#ededed;
+$grey_xl:	#fafafa;
 
 @mixin border_size($method){
 	box-sizing: $method;
@@ -70,7 +73,7 @@ $grey_xl:	#ddd8e0;
   	-webkit-appearance: none;
   	-webkit-border-radius:1px;
 	-moz-border-radius:1px;
-	border-radius:1px;
+	border-radius:3px;
 	&:focus{
 	   	color: $yellow;
 	    outline: none;
@@ -79,6 +82,19 @@ $grey_xl:	#ddd8e0;
 		box-shadow: none;		
 	 	@include highlight_gradient();
     }
+}
+@mixin labels(){
+	display: block;
+	width: 90%;
+	float: left;
+	text-align: left;
+	margin: 30px 5% 0;
+	color: $green_xd;
+	font-weight: 700;
+	text-transform: uppercase;
+	text-shadow: 1px 2px 0 $green_d;
+	height: 20px;
+	@include border_size(border-box);
 }
 body{
 	font-family: "Roboto", sans-serif;
@@ -104,7 +120,11 @@ h2{
 	
 }
 h3{
-	
+	font-weight: 200;
+	color: white;
+	font-style: oblique;
+	font-size: 1.3rem;
+	margin: .8 rem;
 }
 
 .block{
@@ -126,108 +146,354 @@ h3{
 .g4{
 	background: $green_l;
 }
-
-label{
-	display: block;
-	width: 90%;
-	float: left;
-	text-align: left;
-	margin: 30px 5% 0;
-	color: $green_l;
-	text-transform: uppercase;
-	text-shadow: 1px 2px 0 $green_d;
-	height: 20px;
-	@include border_size(border-box);
-}
-input{
-	float: left;
-	width: 96%;
-	@include inputStyle();
-	@include inputColors(black, $green, $green_d);
-	@include inputFields();
+.greenBG{
+	@include greenBG();
+	section{
 	
-	transition: all .5s; 
-	@include border_size(border-box);
-	&::-webkit-input-placeholder{
-		color: $green_l;
-	} 
-	&[type=radio]{
-		display: block;
-		height: 30px;
-		width: 30px;
-		margin: 5px 10px;
-		background: transparent !important;
-		border: 2px solid;
-		border-radius: 100%;
-		
-		&:after{
-			position:absolute;
-	        font-family: FontAwesome;
-	        top:0;
-	        left:-5px;
-	        content: "\25AE";
-		}
 	}
-}
-select{
-	@include inputStyle();
-	@include inputFields();
-	@include inputColors($green_l ,$green, $green_d);
-}
-
-span.inputs{
-	//width: 60%;
-	display: block;
-	float: left;
-	text-align: left;
-	width: 100%;
-	margin: 2%;
-	
 	label{
-		width: inherit;
-		text-align: left;
+		@include labels();
+		color: $green_l;
+	}
+	input{
+		float: left;
+		width: 96%;
+		@include inputStyle();
+		@include inputColors(black, $green, $green_d);
 		@include inputFields();
-		@include inputColors(grey,$grey_l, $grey_xl);
-		text-shadow: none;
-		height: auto;
-		padding: 15px 0 10px;
-		line-height: 2.4rem;
-		&.choice{
-								//text-align: left;	
-		}
-		&.separate_line{
+		
+		transition: all .5s; 
+		@include border_size(border-box);
+		&::-webkit-input-placeholder{
+			color: $green_xl;
+		} 
+		&[type=radio]{
 			display: block;
-			clear: both;
-		}
-		&.yes{
-			@include inputColors($green_xd, rgba($green,.5), $green_d);
-			text-align: right;
-			input{
-				float: right
+			height: 30px;
+			width: 30px;
+			margin: 5px 10px;
+			background: transparent !important;
+			border: 2px solid;
+			border-radius: 100%;
+			
+			&:after{
+				position:absolute;
+		        font-family: FontAwesome;
+		        top:0;
+		        left:-5px;
+		        content: "\25AE";
 			}
 		}
-		&.no{
-			@include inputColors($red, rgba($red,.5), $red);
-			text-align: left;
-		}
-		&.female{
-			@include inputColors($red, rgba($red,.5), $red);
-			text-align: right;
-			input{
-				float: right;
+		&[type=button]{
+			@include inputColors(white, $green_d, $green_l);
+			&:hover{
+				//@include inputColors($yellow, $green_xd, $yellow);
+				color: $yellow;
+				background-color: $green_xd;
+				@include highlight_gradient();
 			}
 		}
-		&.male{
-			@include inputColors($blue, rgba($blue,.5), $blue);
+	}
+	select{
+		@include inputStyle();
+		@include inputFields();
+		@include inputColors($green_l ,$green, $green_d);
+	}
+	
+	span.inputs{
+		//width: 60%;
+		display: block;
+		float: left;
+		text-align: left;
+		width: 100%;
+		margin: 2%;
+		
+		label{
+			width: inherit;
 			text-align: left;
-		}
-		&.yes, &.no, &.female, &.male{
-			width: 44%;
-			margin: 0 4% 0 0;
+			@include inputFields();
+			@include inputColors(grey,$grey_l, $grey_xl);
+			text-shadow: none;
+			height: auto;
+			padding: 15px 0 10px;
+			line-height: 2.4rem;
+			&.choice{
+									//text-align: left;	
+			}
+			&.separate_line{
+				display: block;
+				clear: both;
+			}
+			&.yes{
+				@include inputColors($green_xd, rgba($green,.5), $green_d);
+				text-align: right;
+				input{
+					float: right
+				}
+			}
+			&.no{
+				@include inputColors($red, rgba($red,.5), $red);
+				text-align: left;
+			}
+			&.female{
+				@include inputColors($red, rgba($red,.5), $red);
+				text-align: right;
+				input{
+					float: right;
+				}
+			}
+			&.male{
+				@include inputColors($blue, rgba($blue,.5), $blue);
+				text-align: left;
+			}
+			&.yes, &.no, &.female, &.male{
+				width: 44%;
+				margin: 0 4% 0 0;
+			}
 		}
 	}
 }
 
+
+
+.whiteBG{
+	@include greenBG();
+	section{
+	background: white;
+	}
+	label{
+		@include labels();
+		color: $grey;
+		text-shadow: none;
+	}
+	input{
+		float: left;
+		width: 96%;
+		@include inputStyle();
+		@include inputColors($green_xd, $grey_l, $green_d);
+		@include inputFields();
+		transition: all .5s; 
+		@include border_size(border-box);
+		&::-webkit-input-placeholder{
+			color: $green_l;
+		} 
+		&:focus{
+			color: $green_d;
+		}
+		&[type=radio]{
+			display: block;
+			height: 20px;
+			width: 20px;
+			margin: 5px 10px;
+			background: white !important;
+			border: 2px solid;
+			border-radius: 100%;
+			
+			&:after{
+				position:absolute;
+		        font-family: FontAwesome;
+		        top:0;
+		        left:-5px;
+		        content: "\25AE";
+			}
+		}
+		&[type=button]{
+			@include inputColors(white, $green_d, white);
+			&:hover{
+				//@include inputColors($yellow, $green_xd, $yellow);
+				color: $yellow;
+				background-color: $green_xd;
+				@include highlight_gradient();
+			}
+		}
+	}
+	select{
+		@include inputStyle();
+		@include inputFields();
+		@include inputColors($green_d, $grey_l, $green_d);
+		padding-right: 35px;
+	}
+	
+	span.inputs{
+		//width: 60%;
+		display: block;
+		float: left;
+		text-align: left;
+		width: 100%;
+		margin: 2%;
+		
+		label{
+			width: inherit;
+			text-align: left;
+			@include inputFields();
+			@include inputColors(grey,$grey_l, $grey_xl);
+			text-shadow: none;
+			height: auto;
+			padding: 15px 0 10px;
+			line-height: 2.4rem;
+			&.choice{
+									//text-align: left;	
+			}
+			&.separate_line{
+				display: block;
+				clear: both;
+			}
+			&.yes{
+				@include inputColors($green_xd, rgba($green,.25), $green_d);
+				text-align: right;
+				input{
+					float: right
+				}
+			}
+			&.no{
+				@include inputColors($red, rgba($red,.25), $red);
+				text-align: left;
+			}
+			&.female{
+				@include inputColors($red, rgba($red,.25), $red);
+				text-align: right;
+				input{
+					float: right;
+				}
+			}
+			&.male{
+				@include inputColors($blue, rgba($blue,.25), $blue);
+				text-align: left;
+			}
+			&.yes, &.no, &.female, &.male{
+				width: 44%;
+				margin: 0 4% 0 0;
+			}
+		}
+	}
+}
+
+.imageBG{
+	h3.signUp{
+		padding: 1rem;
+	}
+	section{
+		background: none;
+	}
+	label{
+		display: block;
+		width: 90%;
+		float: left;
+		text-align: left;
+		margin: 30px 5% 0;
+		color: $green_l;
+		text-transform: uppercase;
+		text-shadow: 1px 2px 0 $green_d;
+		height: 20px;
+		@include border_size(border-box);
+	}
+	input{
+		float: left;
+		width: 96%;
+		height: 70px;
+		@include inputStyle();
+		@include inputColors($green_d ,rgba(white,.75), $green_d);
+		@include inputFields();
+		transition: all .5s; 
+		@include border_size(border-box);
+		&::-webkit-input-placeholder{
+			color: $green_l;
+		} 
+		&:focus{
+			background-color: $green;
+		}
+		&[type=radio]{
+			display: block;
+			height: 30px;
+			width: 30px;
+			margin: 5px 10px;
+			background: transparent !important;
+			border: 2px solid;
+			border-radius: 100%;
+			
+			&:after{
+				position:absolute;
+		        font-family: FontAwesome;
+		        top:0;
+		        left:-5px;
+		        content: "\25AE";
+			}
+		}
+		&[type=button]{
+			@include inputColors($green_l, $green_d, $green_l);
+			&:hover{
+				//@include inputColors($yellow, $green_xd, $yellow);
+				color: $yellow;
+				background-color: $green_xd;
+				@include highlight_gradient();
+			}
+		}
+	}
+	select{
+		@include inputStyle();
+		@include inputFields();
+		@include inputColors($green_l ,$green, $green_d);
+	}
+	
+	span.inputs{
+		//width: 60%;
+		display: block;
+		float: left;
+		text-align: left;
+		width: 100%;
+		margin: 2%;
+		
+		label{
+			width: inherit;
+			text-align: left;
+			@include inputFields();
+			@include inputColors(grey,$grey_l, $grey_xl);
+			text-shadow: none;
+			height: auto;
+			padding: 15px 0 10px;
+			line-height: 2.4rem;
+			&.choice{
+									//text-align: left;	
+			}
+			&.separate_line{
+				display: block;
+				clear: both;
+			}
+			&.yes{
+				@include inputColors($green_xd, rgba($green,.5), $green_d);
+				text-align: right;
+				input{
+					float: right
+				}
+			}
+			&.no{
+				@include inputColors($red, rgba($red,.5), $red);
+				text-align: left;
+			}
+			&.female{
+				@include inputColors($red, rgba($red,.5), $red);
+				text-align: right;
+				input{
+					float: right;
+				}
+			}
+			&.male{
+				@include inputColors($blue, rgba($blue,.5), $blue);
+				text-align: left;
+			}
+			&.yes, &.no, &.female, &.male{
+				width: 44%;
+				margin: 0 4% 0 0;
+			}
+		}
+	}
+}
+
+
+
+.hidden{
+	display: none;
+}
 
 .wrapper{
 	width: $laptop;
@@ -249,9 +515,29 @@ a.btn{
 	margin: 0 auto;
 	background: $green_xd;
 	overflow-x: hidden;
-	fieldset#logSignIn{
-		
+	
+	
+	fieldset#signButtons{
+		position: absolute; 
+		bottom: 110px; 
+		input{
+			&.txt{
+				width: 10px;
+				padding: 10px 10px 10px;
+				opacity: 0;
+				
+			}
+			&.hidden{
+				width: 0px;
+				padding: 10px;
+			}
+			&[type=button]{
+				width: 21%;
+			}
+		}
 	}
+	
+	
 	#welcome{
 		padding: 1px 0;
 		background: $green_xd;
@@ -274,6 +560,13 @@ a.btn{
 			position: absolute; 
 			bottom: 110px;
 			margin-left: 45px;
+			opacity: 1;
+			transition: all .3s;
+			&.hidden{
+				display: block;
+				bottom: 0;
+				opacity: 0;
+			}
 		}
 	}
 	#numberCheck{
@@ -335,7 +628,7 @@ a.btn{
 	#wizard{
 		color: white;
 		overflow: auto;
-		padding-bottom: 50px;
+		padding: 10px 1px 50px;
 		@include greenBG();
 		width: 100%;
 		div{
@@ -397,7 +690,7 @@ a.btn{
 		border: 0;
 		padding: 0;
 		height: auto;
-		@include greenBG();
+		//@include greenBG();
 		-webkit-transition: all 0.5s ease-in-out;
 		-moz-transition: all 0.5s ease-in-out;
 		-ms-transition: all 0.5s ease-in-out;
@@ -430,7 +723,7 @@ a.btn{
 		}
 		section{
 			width: 100%;
-			background: white;
+			//background: white;
 			overflow: auto;
 			ol{
 				display: block;
@@ -439,9 +732,35 @@ a.btn{
 					text-align: left;
 					width: 50%;
 					display: block;
-										
+					@include border_size(border-box);
+					&.double{
+						width: 100%;
+						label{
+							width: 95%;
+							margin: 30px 2.5% 0;
+						}
+						select{
+							width: 98%;
+							margin: 10px 1%;
+						}
+					}		
+					&.oneAndaHalf{
+						width: 75%;
+						select{
+							width: 97%;
+							margin: 10px 1.5%;
+						}
+					}
+					&.aHalf{
+						width: 25%;
+						select, input{
+							width: 93%;
+							margin: 10px 3.5%;
+						}
+					}
 					&.optional{
 						opacity: .3;
+						display: none;
 					}
 					label{
 						
@@ -486,4 +805,8 @@ a.btn{
 			}
 		}
 	}
+}
+footer{
+	@include greenBG();
+	padding: 5px 0;
 }

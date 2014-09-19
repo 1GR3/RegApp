@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="css/style.css" type="text/css" />
 		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+		<script type="text/javascript" src="js/gentle_anchors_1.2.5.js"></script>
 		<script>
 			$( document ).ready(function() {
 				var OSName="Unknown OS";
@@ -16,48 +17,90 @@
 				if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
 				//document.write('Your OS: '+OSName);
 			
-				function setHeight(){
-					var welcomeHeight = $( window ).height() - $( "#wizard" ).height();
+				function setWelcomeHeight(){
+					var welcomeHeight = $( window ).height() - $( "footer" ).height();
 					$("#welcome").css({
 						height: welcomeHeight,
 					})
 				}
+				function setSignUpHeight(){
+					var signUpHeight = $( window ).height() - $( "footer" ).height();
+					$("#SignUpForm").css({
+						height: signUpHeight,
+					})
+				}
 			
 				$(window).on('resize', function(){
-					  setHeight();
+					  setWelcomeHeight();
 				});
 				
-				setHeight();
+				setWelcomeHeight();
+				
+				function readyToRegister(){
+					$("#wizard").removeClass("hidden");
+					$("[id^='Section']").removeClass("hidden");
+					$("#welcome h2").removeClass("hidden");
+					Gentle_Anchors.Setup('#wizzard');
+				}
+				
+				var signFlag=0;
+				$( "input#gotoSignIn" ).click(function() {
+					if (signFlag==0){
+						//$(this).addClass("getIn");
+						$("#signButtons input").css("width", "20%");
+						$( "input#gotoSignUp" ).css({"width": "0%", "padding":"10px 1px", "opacity": "0"});
+						$( "input.txt" ).css({"width": "25%", "padding":"10px", "opacity": "1"});
+						signFlag++;
+						console.log(signFlag);
+					} else {
+						$("#signButtons input").css({"height": "1px", "opacity": "0"});
+						readyToRegister();
+					}
+				  
+				});
+				
+				$( "input#gotoSignUp" ).click(function() {
+					$("#SignUpForm").removeClass("hidden");
+					setSignUpHeight();
+					$("#signButtons").addClass("hidden");
+					Gentle_Anchors.Setup('#footer');
+				});
+				
+				$( "input#signUp" ).click(function() {
+					$("#SignUpForm").addClass("hidden");
+					readyToRegister();
+				});
+				
 			  
 				  //$("[id^='Section']").removeClass("unavailable");
-				  $("[id^='Section']").mouseup(function() {
+				$("[id^='Section']").click(function() {
 				  	$("[id^='Section']").addClass("closed");
 				  	$(this).removeClass("closed");
 				  	$("[id^='step']").removeClass("active")
 				  	var step_no = "#step"+$(this).attr('id').substr(7);
 				  	$(step_no).addClass("active");
 				  });
-				  $("[id^='step']").mouseup(function() {
+				$("[id^='step']").click(function() {
 				  	$("[id^='step']").removeClass("active");
 				  	$(this).addClass("active");
 				  	$("[id^='Section']").addClass("closed");
 				  	var section_no = "#Section"+$(this).attr('id').substr(4);
 				  	$(section_no).removeClass("closed");
-				  	event.preventDefault();
-				  	$('html,body').animate({scrollTop:$(this.hash).offset().top-120}, 500);
-				  	return false;
-				  });
-				  $(".ncClosed").mouseup(function() {
-				  	$(this).addClass("open");
-				  	$("#numberCheck").removeClass("ncClosed");
-				  });
-				  $("#closeCN").mouseup(function() {
-				  	$("#numberCheck").removeClass("open");
-				  	$("#numberCheck").addClass("ncClosed");
-				  	return false;
-				  });
+				  	//event.preventDefault();
+				  	//$('html,body').animate({scrollTop:$(this.hash).offset().top-120}, 500);
+				  	//return false;
+				});
+//				$(".ncClosed").mouseup(function() {
+//				 	$(this).addClass("open");
+//				  	$("#numberCheck").removeClass("ncClosed");
+//				});
+//				$("#closeCN").mouseup(function() {
+//				  	$("#numberCheck").removeClass("open");
+//				  	$("#numberCheck").addClass("ncClosed");
+//				  	return false;
+//				});
 				  
-				  var windowHeight = $( window ).height();
+				  //var windowHeight = $( window ).height();
 			  
 			});
 		</script>
@@ -69,10 +112,16 @@
 					<img src="img/logo.png" class="logo" alt="" />
 					<!--<h3>is waiting at you!</h3>-->
 					<h1>Become a student</h1>
-					<h2>in these six easy steps</h2>
+					<h2 class="hidden">in these six easy steps</h2>
+					<fieldset id="signButtons" class="imageBG">
+						<input type="email" name="" value="" class="txt" placeholder="e-mail"/>
+						<input type="password" name="" value="" class="txt" placeholder="Passwod"/>
+						<input type="button" id="gotoSignIn" name="" value="Sign In" />
+						<input type="button" id="gotoSignUp" name="" value="Sign Up" />
+					</fieldset>
 				</section>
 			</div>
-			<div id="numberCheck" class="ncClosed">
+			<!--<div id="numberCheck" class="ncClosed">
 				<section>
 					<a id="closeCN" class="btn"><i class="fa fa-times"></i></a>
 					<fieldset>
@@ -82,9 +131,57 @@
 				</section>
 				<h5>Already<br>applied?</h5>
 				<h6>Check the status</h6>
-			</div>
-			
-			<div id="wizard" class="">
+			</div>-->
+			<fieldset id="SignUpForm" class="greenBG hidden">
+				<section>
+					<div class="wrapper">
+						<h3 class="signUp">Please, enter the following data:</legend>
+					</div>
+					<ol class="wrapper">
+						<li class="double">
+							<label for="">Name</label>
+						</li>
+						
+						<li>
+							<input type="" name="" value="" placeholder="First Name"/>
+						</li>
+						<li>
+							<input type="" name="" value="" placeholder="Last Name"/>
+						</li>
+						<li class="double">
+							<label for="">Log in</label>
+						</li>
+						<li>
+							<input type="email" name="" value="" placeholder="e-mail"/>
+						</li>
+						<li>
+							<input type="password" name="" value="" placeholder="Passwod"/>
+						</li>
+						<li class="double">
+							<label for="">Program of Interest</label>
+						</li>
+						<li class="oneAndaHalf">
+							<select>
+								<option value="">Select One</option>
+								<option value="MBA">Master of Business Administration</option>
+								<option value="MSCE">Master of Science in Computer Engineering</option>
+								<option value="MSDA">Master of Science in Digital Arts</option>
+								<option value="MSEE">Master of Science in Electrical Engineering</option>
+								<option value="MSEM">Master of Science in Engineering Management</option>
+								<option value="MSSE">Master of Science in Software Engineering</option>
+								<option value="PHD">PhD in Electrical Engineering</option>
+								<option value="PHD">PhD in Interdisciplinary Sciences</option>
+								<option value="DBA">Doctorate in Business Administration</option>
+								<option value="CERT">Certification Program</option>
+							</select>
+						</li>
+						<li class="aHalf">
+							<input type="button" id="signUp" name="" value="Sign up" />
+						</li>
+					</ol>
+				</section>
+			</fieldset>
+			<div id="wizard" class="hidden">
 				<section class="wrapper">
 					<div id="step1" class="first">
 						<a href="#s1">
@@ -130,7 +227,7 @@
 					</div>
 				</section>
 			</div>
-			<fieldset id="Section1" class="closed">
+			<fieldset id="Section1" class="whiteBG closed hidden">
 				<header class="wrapper">
 					<legend><strong>1</strong><a name="s1"><i class="fa fa-user"></i>Basic Information</a></legend>
 				</header>
@@ -298,7 +395,7 @@
 					</ol>
 				</section>
 			</fieldset>
-			<fieldset id="Section2" class="closed">
+			<fieldset id="Section2" class="whiteBG closed hidden">
 				<header class="wrapper">
 					<legend><strong>2</strong><a name="s2"><i class="fa fa-graduation-cap"></i>Anticipated Enrollment Information</a></legend>
 				</header>
@@ -368,7 +465,7 @@
 				</section>
 				
 			</fieldset>
-			<fieldset id="Section3" class="closed">
+			<fieldset id="Section3" class="whiteBG closed hidden">
 				<header class="wrapper">
 					<legend><strong>3</strong><a name="s3"><i class="fa fa-envelope-o"></i>Address Information</a></legend>
 				</header>
@@ -422,7 +519,7 @@
 					</ol>
 				</section>
 			</fieldset>
-			<fieldset id="Section4" class="closed">
+			<fieldset id="Section4" class="whiteBG closed hidden">
 				<header class="wrapper">
 					<legend><strong>4</strong><a name="s4"><i class="fa fa-university"></i>Education and Employment History</a></legend>
 				</header>
@@ -532,7 +629,7 @@
 					</section>
 				</section>
 			</fieldset>
-			<fieldset id="Section5" class="unavailable closed">
+			<fieldset id="Section5" class="whiteBG unavailable closed hidden">
 				<header class="wrapper">
 					<legend><strong>5</strong><a name="s5"><i class="fa fa-paperclip"></i>Document Upload</a></legend>
 				</header>
@@ -591,7 +688,7 @@
 					</ol>
 				</section>
 			</fieldset>
-			<fieldset id="Section6" class="unavailable closed">
+			<fieldset id="Section6" class="whiteBG unavailable closed hidden">
 				<header class="wrapper">
 					<legend><strong>6</strong><a name="s6"><i class="fa fa-pencil-square-o"></i>Admissions Agreement and Terms of Service</a></legend>
 				</header>
@@ -627,6 +724,11 @@
 					
 				</div>-->
 			</fieldset>
+			<footer id="footer">
+				<section class="wrapper">
+					<h3>This line might be used for copyright but now it has just a visual purpose.</h3>
+				</section>
+			</footer>
 		</div>
 	</body>
 </html>
