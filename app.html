@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>ITU - Registration App</title>
-		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+		<!--<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">-->
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/style.css" type="text/css" />
 		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
@@ -25,9 +25,7 @@
 				}
 				function setSignUpHeight(){
 					var signUpHeight = $( window ).height() - $( "footer" ).height();
-					$("#SignUpForm").css({
-						height: signUpHeight,
-					})
+					$("#SignUpForm").css({	height: signUpHeight, });
 				}
 			
 				$(window).on('resize', function(){
@@ -39,6 +37,7 @@
 				function readyToRegister(){
 					$("#wizard").removeClass("hidden");
 					$("[id^='Section']").removeClass("hidden");
+					$("#signButtons a").addClass("hidden");
 					$("#welcome h2").removeClass("hidden");
 					Gentle_Anchors.Setup('#wizzard');
 				}
@@ -46,10 +45,12 @@
 				var signFlag=0;
 				$( "input#gotoSignIn" ).click(function() {
 					if (signFlag==0){
-						//$(this).addClass("getIn");
+						
+						$("#signButtons").css("padding-left", "0%");
 						$("#signButtons input").css("width", "20%");
-						$( "input#gotoSignUp" ).css({"width": "0%", "padding":"10px 1px", "opacity": "0"});
-						$( "input.txt" ).css({"width": "25%", "padding":"10px", "opacity": "1"});
+						$("input#gotoSignUp" ).css({"width": "0%", "padding":"10px 1px", "opacity": "0"});
+						$("input.txt" ).css({"width": "25%", "padding":"10px", "opacity": "1"});
+						$("#signButtons a").removeClass("hidden");
 						signFlag++;
 						console.log(signFlag);
 					} else {
@@ -89,18 +90,18 @@
 				  	//event.preventDefault();
 				  	//$('html,body').animate({scrollTop:$(this.hash).offset().top-120}, 500);
 				  	//return false;
+				  	Gentle_Anchors.Setup('#s'+$(this).attr('id').substr(4));
 				});
-//				$(".ncClosed").mouseup(function() {
-//				 	$(this).addClass("open");
-//				  	$("#numberCheck").removeClass("ncClosed");
-//				});
-//				$("#closeCN").mouseup(function() {
-//				  	$("#numberCheck").removeClass("open");
-//				  	$("#numberCheck").addClass("ncClosed");
-//				  	return false;
-//				});
-				  
-				  //var windowHeight = $( window ).height();
+				
+				
+				$(window).scroll(function() {
+				if ($(this).scrollTop() > $( window ).height() - $( "footer" ).height() ){  
+				    $('#wizard').addClass("sticky");
+				  }
+				  else{
+				    $('#wizard').removeClass("sticky");
+				  }
+				});
 			  
 			});
 		</script>
@@ -118,20 +119,11 @@
 						<input type="password" name="" value="" class="txt" placeholder="Passwod"/>
 						<input type="button" id="gotoSignIn" name="" value="Sign In" />
 						<input type="button" id="gotoSignUp" name="" value="Sign Up" />
+						<a href="" class="hidden">Forgot your password?</a>
 					</fieldset>
 				</section>
 			</div>
-			<!--<div id="numberCheck" class="ncClosed">
-				<section>
-					<a id="closeCN" class="btn"><i class="fa fa-times"></i></a>
-					<fieldset>
-						<label>Enter your candidate number:</label>
-						<input type="number" name="" value="" />
-					</fieldset>
-				</section>
-				<h5>Already<br>applied?</h5>
-				<h6>Check the status</h6>
-			</div>-->
+			
 			<fieldset id="SignUpForm" class="greenBG hidden">
 				<section>
 					<div class="wrapper">
@@ -229,7 +221,7 @@
 			</div>
 			<fieldset id="Section1" class="whiteBG closed hidden">
 				<header class="wrapper">
-					<legend><strong>1</strong><a name="s1"><i class="fa fa-user"></i>Basic Information</a></legend>
+					<legend><strong>1</strong><a id="s1"><i class="fa fa-user"></i>Basic Information</a></legend>
 				</header>
 				<section>
 					<ol class="wrapper">
@@ -255,17 +247,17 @@
 						
 						<li>
 							<label for="">Date of Birth</label>
-							<select>
+							<select style="width: 35%;">
 								<!-- let's populate this with js later -->
 								<option value="">Year</option>
 								
 							</select>
-							<select>
+							<select style="width: 25%;">
 								<!-- let's populate this with js later -->
 								<option value="">Month</option>
 								
 							</select>
-							<select>
+							<select style="width: 25%;">
 								<!-- let's populate this with js later -->
 								<option value="" disabled selected style='display:none;'>Day</option>
 								<option value="1">1</option>
@@ -292,7 +284,7 @@
 						<li>
 							<label for="">Contact</label>
 						</li>
-						<li></li><!--  -->
+						<li><label for=""></label></li><!--  -->
 						
 						<li>
 							<input type="tel" name="" value="" placeholder="Cell Phone Number" />
@@ -328,7 +320,7 @@
 							<input type="" name="" value="" placeholder="Max. 30 characters"/>
 						</li>
 						<li>
-							<label>Are you a US Citizen or a US Permanent Resident (Green Card Holder)?</label>
+							<label>Are you a US Citizen or a US Permanent Resident<!-- (Green Card Holder)-->?</label>
 							<span class="inputs">
 								<label class="yes">
 									<input type="radio" name="invoice-address" /> 
@@ -391,27 +383,36 @@
 								</label>
 							</span>
 						</li>
-						
+						<li class="double">
+							<input type="button" name="" value="Confirm and Proceed to the Next Step" />
+						</li>
 					</ol>
 				</section>
 			</fieldset>
 			<fieldset id="Section2" class="whiteBG closed hidden">
 				<header class="wrapper">
-					<legend><strong>2</strong><a name="s2"><i class="fa fa-graduation-cap"></i>Anticipated Enrollment Information</a></legend>
+					<legend><strong>2</strong><a id="s2"><i class="fa fa-graduation-cap"></i>Anticipated Enrollment Information</a></legend>
 				</header>
 				<section>
 					<ol class="wrapper">
 						<li>
 							<label for="">Anticipated Academic Enroll Year</label>
-							<span class="inputs">2014-2015</span>
+							<span class="inputs">
+								<label class="clean">2014-2015</label>
+							</span>
 						</li>
 						<li>
 							<label for="">Anticipated Academic Enroll Term</label>
-							<select>
-								<option value="">Select One</option>
-								<option value="SP">Spring</option>
-								<option value="SU">Summer</option>
-							</select>
+							<span class="inputs">
+								<label class="left">
+									<input type="radio" name="invoice-address" /> 
+									Spring
+								</label>
+								<label class="right">
+							        <input type="radio" name="invoice-address" /> 
+									Summer
+								</label>
+							</span>
 						</li>
 						<li>
 							<label for="">Have you studied at ITU in the past?</label>
@@ -461,13 +462,16 @@
 								<option value="PMGT">Project Management</option>
 							</select>
 						</li>
+						<li class="double">
+							<input type="button" name="" value="Confirm and Proceed to the Next Step" />
+						</li>
 					</ol>
 				</section>
 				
 			</fieldset>
 			<fieldset id="Section3" class="whiteBG closed hidden">
 				<header class="wrapper">
-					<legend><strong>3</strong><a name="s3"><i class="fa fa-envelope-o"></i>Address Information</a></legend>
+					<legend><strong>3</strong><a id="s3"><i class="fa fa-envelope-o"></i>Address Information</a></legend>
 				</header>
 				<section>
 					<ol class="wrapper">
@@ -516,12 +520,15 @@
 								<input type="" name="" value="" />
 							</li>
 						</section>
+						<li class="double">
+							<input type="button" name="" value="Confirm and Proceed to the Next Step" />
+						</li>
 					</ol>
 				</section>
 			</fieldset>
 			<fieldset id="Section4" class="whiteBG closed hidden">
 				<header class="wrapper">
-					<legend><strong>4</strong><a name="s4"><i class="fa fa-university"></i>Education and Employment History</a></legend>
+					<legend><strong>4</strong><a id="s4"><i class="fa fa-university"></i>Education and Employment History</a></legend>
 				</header>
 				<section>
 					<section class="wrapper">
@@ -577,12 +584,15 @@
 									</label>
 								</span>
 							</li>
+							<li class="double">
+								<input type="button" name="" value="Confirm and Proceed to the Next Step" />
+							</li>
 						</ol>
 					</section>
 					<section class="wrapper">
 						<h2>Education</h2>
 						<h3>Additional</h3>
-						<button>+ Add College</button>
+						<input type="button" name="" value="+ Add More" />
 					</section>
 					<section class="wrapper">
 						<h2>Employment Experience</h2>
@@ -620,18 +630,21 @@
 								<label>End Date</label>
 								<input type="date" name="" value="" />
 							</li>
+							<li class="double">
+								<input type="button" name="" value="Confirm and Proceed to the Next Step" />
+							</li>
 						</ol>
 					</section>
 					<section class="wrapper">
 						<h2>Employment Experience</h2>
 						<h3>Additional</h3>
-						<button>+ Add More</button>
+						<input type="button" name="" value="+ Add More" />
 					</section>
 				</section>
 			</fieldset>
 			<fieldset id="Section5" class="whiteBG unavailable closed hidden">
 				<header class="wrapper">
-					<legend><strong>5</strong><a name="s5"><i class="fa fa-paperclip"></i>Document Upload</a></legend>
+					<legend><strong>5</strong><a id="s5"><i class="fa fa-paperclip"></i>Document Upload</a></legend>
 				</header>
 				<section>
 					<ol class="wrapper">
@@ -639,78 +652,91 @@
 							<label for="">Bank Statement</label>
 							<span class="inputs">
 								<input type="file" name="" value="" />
-								<input type="submit" name="" value="upload" />
+								<!--<input type="submit" name="" value="upload" />-->
 							</span>
 						</li>
 						<li>
 							<label for="">Transcripts</label>
 							<span class="inputs">
 								<input type="file" name="" value="" />
-								<input type="submit" name="" value="upload" />
+								<!--<input type="submit" name="" value="upload" />-->
 							</span>
 						</li>
 						<li>
 							<label for="">Statement of Purpose</label>
 							<span class="inputs">
 								<input type="file" name="" value="" />
-								<input type="submit" name="" value="upload" />
+								<!--<input type="submit" name="" value="upload" />-->
 							</span>
 						</li>
 						<li>
 							<label for="">Wes Evaluation Report </label>
 							<span class="inputs">
 								<input type="file" name="" value="" />
-								<input type="submit" name="" value="upload" />
+								<!--<input type="submit" name="" value="upload" />-->
 							</span>
 						</li>
 						<li>
 							<label for="">TOFEL Score</label>
 							<span class="inputs">
 								<input type="file" name="" value="" />
-								<input type="submit" name="" value="upload" />
+								<!--<input type="submit" name="" value="upload" />-->
 							</span>
 						</li>
 						<li>
 							<label for="">Gre Score card</label>
 							<span class="inputs">
 								<input type="file" name="" value="" />
-								<input type="submit" name="" value="upload" />
+								<!--<input type="submit" name="" value="upload" />-->
 							</span>
 						</li>
 						<li>
 							<label for="">Others</label>
 							<span class="inputs">
 								<input type="file" name="" value="" />
-								<input type="submit" name="" value="upload" />
+								<!--<input type="submit" name="" value="upload" />-->
 							</span>
 						</li>
-						<li><button>+ Add More</button></li>
+						<li>
+							<label for="">Additional</label>
+							<input type="button" name="" value="+ add  more" />
+						</li>
+						<li class="double">
+							<input type="button" name="" value="Upload and Proceed to the Next Step" />
+						</li>
 					</ol>
 				</section>
 			</fieldset>
 			<fieldset id="Section6" class="whiteBG unavailable closed hidden">
 				<header class="wrapper">
-					<legend><strong>6</strong><a name="s6"><i class="fa fa-pencil-square-o"></i>Admissions Agreement and Terms of Service</a></legend>
+					<legend><strong>6</strong><a id="s6"><i class="fa fa-pencil-square-o"></i>Admissions Agreement and Terms of Service</a></legend>
 				</header>
 				<section>
 					<ol class="wrapper">
 						<li>
 							<p>BY SELECTING "I AGREE" I CERTIFY THAT ALL OF THE ANSWERS I WILL PROVIDE IN THIS APPLICATION ARE COMPLETE AND ACCURATE TO THE BEST OF MY KNOWLEDGE AND, IF ADMITTED, I AGREE TO OBSERVE ALL THE RULES AND REGULATIONS OF INTERNATIONAL TECHNOLOGICAL UNIVERSITY. FAILURE TO DO SO CAN RESULT IN DISCIPLINARY ACTION. I AGREE THAT ALL DOCUMENTS SUBMITTED AS PART OF THIS APPLICATION ARE AUTHENTIC AND THAT ANY FALSIFICATION OR OMISSION OR MISSTATEMENT BY ME IN THIS APPLICATION MAY RESULT IN CANCELLATION OF MY ADMISSION AND/OR OTHER DISCIPLINARY ACTION BY INTERNATIONAL TECHNOLOGICAL UNIVERSITY.</p>
-							<label for="" class="full_width">
-								<input type="checkbox" name="" value=""/>
-								I Agree
-							</label>
+							<span class="inputs">
+								<label for="" class="full_width check">
+									<input type="checkbox" name="" value=""/>
+									I Agree
+								</label>
+							</span>
 						</li>
 						<li>
 							<p>BY SELECTING "I AGREE", I AGREE TO PAY A NON-REFUNDABLE APPLICATION FEE OF $80 USD TO BE CONSIDERED FOR ADMISSION AT INTERNATIONAL TECHNOLOGICAL UNIVERSITY. I UNDERSTAND THIS FEE IS NOT REFUNDABLE, AND PAYING THIS FEE DOES NOT GUARANTEE ADMISSION IN ANY WAY. IF I AM PAYING MY NON-REFUNDABLE APPLICATION FEE USING A THIRD PARTY CREDIT CARD (I.E. A CREDIT CARD WHICH DOESN'T BELONG TO THE APPLICANT), I HEREBY ACKNOWLEDGE THAT I HAVE RELAYED THE TERMS AND CONDITIONS TO THE THIRD PARTY CARD HOLDER AND HAVE HIS OR HER CONSENT IN MAKING A NON-REFUNDABLE PAYMENT. I AGREE THAT IF THE THIRD PARTY CARD HOLDER DISPUTES THE TRANSACTION AT A LATER DATE, FOR ANY REASON, I AS THE APPLICANT WILL BE HELD FULLY LIABLE FOR ALL FEES AND PENALTIES INCURRED FROM THE DISPUTE OF PAYMENT, INCLUDING THE ORIGINAL $80 NON-REFUNDABLE APPLICATION FEE.</p>
-							<label for="" class="full_width">
-								<input type="checkbox" name="" value=""/>
-								I Agree
-							</label>
+							<span class="inputs">
+								<label for="" class="full_width check">
+									<input type="checkbox" name="" value=""/>
+									I Agree
+								</label>
+							</span>
 						</li>
 						<li>
 							<label for="">Cardholder Name</label>
 							<input type="" name="" value="" />
+						</li>
+						<li class="double">
+							<input type="button" name="" value="Confirm and Finish the Registration" />
 						</li>
 					</ol>
 				</section>

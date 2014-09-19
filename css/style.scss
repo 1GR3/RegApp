@@ -36,7 +36,7 @@ $grey_xl:	#fafafa;
 	background-attachment: fixed;
 }
 
-@mixin highlight_gradient(){
+@mixin highlightGradient(){
 	background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwNjY0NCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmU0MDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
 	background-image: -moz-linear-gradient(left,  #006644 0%, #ffe400 100%);
 	background-image: -webkit-gradient(linear, left top, right top, color-stop(0%,#006644), color-stop(100%,#ffe400));
@@ -80,7 +80,7 @@ $grey_xl:	#fafafa;
 	 	-webkit-box-shadow: none;
 	 	-moz-box-shadow: none;
 		box-shadow: none;		
-	 	@include highlight_gradient();
+	 	@include highlightGradient();
     }
 }
 @mixin labels(){
@@ -190,7 +190,7 @@ h3{
 				//@include inputColors($yellow, $green_xd, $yellow);
 				color: $yellow;
 				background-color: $green_xd;
-				@include highlight_gradient();
+				@include highlightGradient();
 			}
 		}
 	}
@@ -282,7 +282,7 @@ h3{
 		}
 		&[type=radio]{
 			display: block;
-			height: 20px;
+			height: 27px;
 			width: 20px;
 			margin: 5px 10px;
 			background: white !important;
@@ -297,13 +297,57 @@ h3{
 		        content: "\25AE";
 			}
 		}
+		&[type=checkbox]{
+			height: 22px;
+			display: block;
+			width: 22px;
+			padding: 0;
+			background: white;
+			border: 2px solid;
+			margin: 8px 15px 8px 24px;
+		}
 		&[type=button]{
-			@include inputColors(white, $green_d, white);
+			@include inputColors($green_l, $green_xd, $green_xl);
+			margin-top: 20px;
 			&:hover{
 				//@include inputColors($yellow, $green_xd, $yellow);
 				color: $yellow;
 				background-color: $green_xd;
-				@include highlight_gradient();
+				@include highlightGradient();
+			}
+		}
+		&[type=file]{
+			margin-left: 32%;
+			width: 66%;
+			height: 65px;
+			@include inputColors($green_l, $grey_xl, $green_xl);
+			&::-webkit-input-placeholder{
+				color: red;
+				padding: 20px;
+			} 
+			&::-webkit-file-upload-button {
+			  visibility: hidden;
+			}
+			&::before {
+			  content: 'Choose file';
+			  display: inline-block;
+			   border-radius: 3px;
+			  padding: 7px 8px 8px;
+			  outline: none;
+			  white-space: nowrap;
+			  -webkit-user-select: none;
+			  cursor: pointer;
+			  @include inputColors($green_l, $green_d, $green_l);
+			  left: -160px;
+			  top: -5px;
+			  position: relative;
+			}
+			&:hover::before {
+			  @include inputColors($yellow, $green_d, $green_l);
+			  @include highlightGradient();
+			}
+			&:active::before {
+			  //background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 			}
 		}
 	}
@@ -312,6 +356,7 @@ h3{
 		@include inputFields();
 		@include inputColors($green_d, $grey_l, $green_d);
 		padding-right: 35px;
+		width: 96%;
 	}
 	
 	span.inputs{
@@ -326,10 +371,10 @@ h3{
 			width: inherit;
 			text-align: left;
 			@include inputFields();
-			@include inputColors(grey,$grey_l, $grey_xl);
+			@include inputColors($grey,$grey_l, $grey);
 			text-shadow: none;
 			height: auto;
-			padding: 15px 0 10px;
+			padding: 13px 0 14px;
 			line-height: 2.4rem;
 			&.choice{
 									//text-align: left;	
@@ -337,6 +382,8 @@ h3{
 			&.separate_line{
 				display: block;
 				clear: both;
+				margin:  0  0 5px ;
+				width: 96%;
 			}
 			&.yes{
 				@include inputColors($green_xd, rgba($green,.25), $green_d);
@@ -360,11 +407,39 @@ h3{
 				@include inputColors($blue, rgba($blue,.25), $blue);
 				text-align: left;
 			}
-			&.yes, &.no, &.female, &.male{
-				width: 44%;
-				margin: 0 4% 0 0;
+			&.left{
+				text-align: right;
+				input{
+					float: right
+				}
+			}
+			&.right{
+				
+			}
+			&.clean{
+				background: none;
+				color: $green_xd;
+				padding-left: 3%;
+			}
+			&.yes, &.no, &.female, &.male, &.left, &.right, &.clean{
+				width: 46%;
+				margin: 1px 4% 0 0;
+			}
+			&.check{
+				display: block;
+				margin: 0;
+				width: 90%;
+				@include inputColors($green_d, $grey_l, $green_d);
+				&:hover{
+					@include highlightGradient();
+				}
 			}
 		}
+	}
+	p{
+		color: $grey_xd;
+		margin-right: 25px;
+		text-align: justify;
 	}
 }
 
@@ -425,9 +500,10 @@ h3{
 				//@include inputColors($yellow, $green_xd, $yellow);
 				color: $yellow;
 				background-color: $green_xd;
-				@include highlight_gradient();
+				@include highlightGradient();
 			}
 		}
+		
 	}
 	select{
 		@include inputStyle();
@@ -481,7 +557,8 @@ h3{
 				@include inputColors($blue, rgba($blue,.5), $blue);
 				text-align: left;
 			}
-			&.yes, &.no, &.female, &.male{
+			
+			&.yes, &.no, &.female, &.male, &.clean{
 				width: 44%;
 				margin: 0 4% 0 0;
 			}
@@ -519,7 +596,9 @@ a.btn{
 	
 	fieldset#signButtons{
 		position: absolute; 
-		bottom: 110px; 
+		bottom: 110px;
+		width: 80%;
+		padding-left: 10%;
 		input{
 			&.txt{
 				width: 10px;
@@ -533,6 +612,23 @@ a.btn{
 			}
 			&[type=button]{
 				width: 21%;
+			}
+		}
+		a{
+			float: left;
+			color: white;
+			//background: rgba($green_xd,.3);
+			text-decoration: none;
+			margin-left: 3%;
+			clear: both;
+			transition: all .5s;
+			font-size: 1.2rem;
+			&:hover{
+				text-decoration: underline;
+			}
+			&.hidden{
+				opacity: 0;
+				display: block;
 			}
 		}
 	}
@@ -569,68 +665,18 @@ a.btn{
 			}
 		}
 	}
-	#numberCheck{
-		color: $green_xd;
-		background: $green_l;
-		display: block;
-		padding: 50px 100px 10px;
-		position: absolute;
-		top: -40px;
-		right: -150px;
-		z-index: 10;
-		transform: rotateZ(45deg);
-		transition: all .5s ease-in-out;
-		section{
-			display: none;
-			opacity: 0;
-			height: 0;
-			transition: all .5s;
-		}
-		h5, h6{
-			text-align: center;
-			color: $green_xd;
-			margin: 10px auto 0;
-			opacity: 1;
-			transition: all .5s;
-		}
-		h6{
-			text-transform: uppercase;
-			font-size: 1rem;
-		}
-		&:hover{
-			background: $yellow;
-		}
-		&.open{
-			width: 300px;
-			height: 160px;
-			position: absolute;
-			top: 50%;
-			right: 50%;
-			margin-right: -250px;
-			margin-top: -100px;
-			transform: rotateZ(0deg);
-			section{
-				display: block;
-				opacity: 1;
-				height: auto;
-				input{
-					
-				 }
-			}
-			h5, h6{
-				opacity: 0;
-			}
-			&:hover{
-				background: $green_l;
-			}
-		}
-	}
 	#wizard{
 		color: white;
 		overflow: auto;
 		padding: 10px 1px 50px;
 		@include greenBG();
 		width: 100%;
+		&.sticky{
+			position: fixed;
+			top: 0;
+			padding-bottom: 10px;
+			z-index: 100;
+		}
 		div{
 			@include border_size(border-box);
 			padding: 10px;
@@ -721,18 +767,32 @@ a.btn{
 				}
 			}
 		}
-		section{
-			width: 100%;
+		&>section{
+			//width: 100%;
 			//background: white;
 			overflow: auto;
+			padding: 30px 0 50px 0;
+			h2{
+				font-weight: 200;
+				font-style: normal;
+				text-align: left;
+				margin-bottom: 5px;
+			}
+			h3{
+				color: $grey_d;
+				margin-top: 5px;
+			}
 			ol{
 				display: block;
+				margin-bottom: 30px;
+				overflow: auto;
 				li{
 					float: left;
 					text-align: left;
 					width: 50%;
 					display: block;
 					@include border_size(border-box);
+					
 					&.double{
 						width: 100%;
 						label{
