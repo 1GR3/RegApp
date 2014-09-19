@@ -1,0 +1,353 @@
+/* widths */
+/* colors */
+body {
+  font-family: "Roboto", sans-serif;
+  background: #55bb88;
+  color: #8cd6af;
+  padding: 0;
+  margin: 0; }
+
+h1 {
+  text-align: center;
+  font-weight: 100;
+  font-size: 4rem;
+  color: white; }
+
+h2 {
+  text-align: center;
+  font-weight: 700;
+  font-style: oblique;
+  font-size: 2rem; }
+
+.block {
+  width: 100px;
+  height: 100px;
+  display: block;
+  float: left;
+  margin-right: 5px; }
+
+.g1 {
+  background: #006644; }
+
+.g2 {
+  background: #009966; }
+
+.g3 {
+  background: #55bb88; }
+
+.g4 {
+  background: #8cd6af; }
+
+.wrapper {
+  width: 960px;
+  margin: auto; }
+
+a.btn {
+  display: block;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%; }
+  a.btn i {
+    font-size: 20px; }
+
+#registration_form {
+  width: 100%;
+  margin: 0 auto;
+  background: #006644; }
+  #registration_form #welcome {
+    padding: 1px 0;
+    padding: 65px 0; }
+    #registration_form #welcome img {
+      display: block;
+      margin: auto; }
+  #registration_form #numberCheck {
+    color: #006644;
+    background: #8cd6af;
+    display: block;
+    padding: 50px 100px 10px;
+    position: absolute;
+    top: -40px;
+    right: -150px;
+    z-index: 10;
+    transform: rotateZ(45deg);
+    transition: all .5s ease-in-out; }
+    #registration_form #numberCheck section {
+      display: none; }
+    #registration_form #numberCheck h5, #registration_form #numberCheck h6 {
+      text-align: center;
+      color: #006644;
+      margin: 10px; }
+    #registration_form #numberCheck h6 {
+      text-transform: uppercase;
+      font-size: 1rem; }
+    #registration_form #numberCheck:hover {
+      background: #ffe400; }
+    #registration_form #numberCheck.open {
+      width: 300px;
+      height: 160px;
+      position: absolute;
+      top: 50%;
+      right: 50%;
+      margin-right: -250px;
+      margin-top: -100px;
+      transform: rotateZ(0deg); }
+      #registration_form #numberCheck.open section {
+        display: block; }
+        #registration_form #numberCheck.open section input {
+          float: left;
+          width: 96%;
+          margin: 10px 2%;
+          background: #55bb88;
+          color: black;
+          padding: 5px 15px 10px;
+          line-height: 50px;
+          border: none;
+          font-size: 1.5rem;
+          font-weight: 200;
+          font-family: "Roboto";
+          border-radius: 1px;
+          background-image: -webkit-linear-gradient(left, #009966 0%, #009966 100%);
+          background-size: 100% 5px;
+          background-position: 0 100%, 0 0;
+          background-repeat: no-repeat;
+          transition: all .5s;
+          box-sizing: border-box;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          -o-box-sizing: border-box; }
+          #registration_form #numberCheck.open section input::-webkit-input-placeholder {
+            color: #8cd6af; }
+          #registration_form #numberCheck.open section input::-webkit-input-placeholder, #registration_form #numberCheck.open section input:-moz-placeholder, #registration_form #numberCheck.open section input::-moz-placeholder, #registration_form #numberCheck.open section input:-ms-input-placeholder {
+            color: #8cd6af; }
+          #registration_form #numberCheck.open section input:focus {
+            color: #ffe400;
+            outline: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwNjY0NCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmU0MDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+            background-image: -moz-linear-gradient(left, #006644 0%, #ffe400 100%);
+            background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, #006644), color-stop(100%, #ffe400));
+            background-image: -webkit-linear-gradient(left, #006644 0%, #ffe400 100%);
+            background-image: -o-linear-gradient(left, #006644 0%, #ffe400 100%);
+            background-image: -ms-linear-gradient(left, #006644 0%, #ffe400 100%);
+            background-image: linear-gradient(to right, #006644 0%, #ffe400 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#006644', endColorstr='#ffe400',GradientType=1 ); }
+      #registration_form #numberCheck.open h5, #registration_form #numberCheck.open h6 {
+        opacity: 0; }
+      #registration_form #numberCheck.open:hover {
+        background: #8cd6af; }
+  #registration_form #wizard {
+    color: white;
+    overflow: auto;
+    margin-bottom: 25px; }
+    #registration_form #wizard div {
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -o-box-sizing: border-box;
+      padding: 10px;
+      width: 14.28571%;
+      display: inline-block;
+      float: left;
+      color: inherit; }
+      #registration_form #wizard div a {
+        color: inherit;
+        text-decoration: none; }
+        #registration_form #wizard div a .number {
+          display: block;
+          width: 35px;
+          height: 35px;
+          border: 4px solid;
+          border-radius: 100%;
+          text-align: center;
+          line-height: 35px;
+          font-size: 1.5rem;
+          font-weight: 600;
+          margin: auto;
+          cursor: pointer; }
+          #registration_form #wizard div a .number:after {
+            content: "";
+            display: block;
+            border: 2px solid;
+            width: 270%;
+            left: 100%;
+            bottom: 58%;
+            position: relative;
+            cursor: initial; }
+      #registration_form #wizard div h4 {
+        display: none; }
+      #registration_form #wizard div.unavailable {
+        color: #8cd6af; }
+      #registration_form #wizard div.active {
+        color: #ffe400; }
+      #registration_form #wizard div.last .number:after {
+        content: "";
+        width: 0;
+        border: none; }
+  #registration_form fieldset {
+    width: 100%;
+    border: 0;
+    padding: 0;
+    height: auto;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box; }
+    #registration_form fieldset header legend {
+      height: 50px;
+      font-size: 2rem;
+      font-weight: 100;
+      color: #ffe400;
+      margin-left: 45px;
+      padding: 0 15px;
+      line-height: 2.5rem;
+      vertical-align: top;
+      overflow: hidden; }
+      #registration_form fieldset header legend strong {
+        font-size: 4rem;
+        font-weight: 900;
+        line-height: 2.8rem;
+        display: none; }
+    #registration_form fieldset section {
+      width: 100%;
+      background: #8cd6af;
+      overflow: auto; }
+      #registration_form fieldset section ol {
+        display: block; }
+        #registration_form fieldset section ol li {
+          float: left;
+          text-align: left;
+          width: 50%;
+          display: block; }
+          #registration_form fieldset section ol li.optional {
+            opacity: .3; }
+          #registration_form fieldset section ol li label {
+            display: block;
+            width: 90%;
+            float: left;
+            text-align: left;
+            margin: 30px 5% 0;
+            color: white;
+            text-transform: uppercase;
+            text-shadow: 1px 2px 0 #55bb88;
+            height: 20px;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -o-box-sizing: border-box; }
+          #registration_form fieldset section ol li input {
+            float: left;
+            width: 96%;
+            margin: 10px 2%;
+            background: #55bb88;
+            color: black;
+            padding: 5px 15px 10px;
+            line-height: 50px;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: 200;
+            font-family: "Roboto";
+            border-radius: 1px;
+            background-image: -webkit-linear-gradient(left, #009966 0%, #009966 100%);
+            background-size: 100% 5px;
+            background-position: 0 100%, 0 0;
+            background-repeat: no-repeat;
+            transition: all .5s;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -o-box-sizing: border-box; }
+            #registration_form fieldset section ol li input::-webkit-input-placeholder {
+              color: #8cd6af; }
+            #registration_form fieldset section ol li input::-webkit-input-placeholder, #registration_form fieldset section ol li input:-moz-placeholder, #registration_form fieldset section ol li input::-moz-placeholder, #registration_form fieldset section ol li input:-ms-input-placeholder {
+              color: #8cd6af; }
+            #registration_form fieldset section ol li input:focus {
+              color: #ffe400;
+              outline: none;
+              -webkit-box-shadow: none;
+              -moz-box-shadow: none;
+              box-shadow: none;
+              background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwNjY0NCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmU0MDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+              background-image: -moz-linear-gradient(left, #006644 0%, #ffe400 100%);
+              background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, #006644), color-stop(100%, #ffe400));
+              background-image: -webkit-linear-gradient(left, #006644 0%, #ffe400 100%);
+              background-image: -o-linear-gradient(left, #006644 0%, #ffe400 100%);
+              background-image: -ms-linear-gradient(left, #006644 0%, #ffe400 100%);
+              background-image: linear-gradient(to right, #006644 0%, #ffe400 100%);
+              filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#006644', endColorstr='#ffe400',GradientType=1 ); }
+            #registration_form fieldset section ol li input[type="radio"], #registration_form fieldset section ol li input[type="checkbox"] {
+              width: auto;
+              margin: 5px 10px; }
+          #registration_form fieldset section ol li select {
+            margin: 10px 2%;
+            background: #55bb88;
+            color: #006644;
+            padding: 5px 15px 10px;
+            line-height: 50px;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: 200;
+            font-family: "Roboto";
+            border-radius: 1px;
+            background-image: -webkit-linear-gradient(left, #006644 0%, #006644 100%);
+            background-size: 100% 5px;
+            background-position: 0 100%, 0 0;
+            background-repeat: no-repeat;
+            -webkit-border-radius: 1px;
+            -moz-border-radius: 1px;
+            border-radius: 1px; }
+          #registration_form fieldset section ol li span.inputs {
+            width: 60%;
+            display: block;
+            float: left;
+            text-align: left; }
+            #registration_form fieldset section ol li span.inputs label {
+              width: inherit;
+              text-align: left; }
+              #registration_form fieldset section ol li span.inputs label.separate_line {
+                display: block;
+                clear: both; }
+              #registration_form fieldset section ol li span.inputs label.yes {
+                color: #55bb88;
+                text-align: right;
+                width: 48%;
+                margin: 0;
+                background: rgba(85, 187, 136, 0.3); }
+                #registration_form fieldset section ol li span.inputs label.yes input {
+                  float: right; }
+              #registration_form fieldset section ol li span.inputs label.no {
+                color: #db3900;
+                text-align: left;
+                width: 48%;
+                margin: 0;
+                background: rgba(219, 57, 0, 0.3); }
+              #registration_form fieldset section ol li span.inputs label.female {
+                color: #db3900;
+                text-align: right;
+                width: 48%;
+                margin: 0;
+                background: rgba(219, 57, 0, 0.3); }
+                #registration_form fieldset section ol li span.inputs label.female input {
+                  float: right; }
+              #registration_form fieldset section ol li span.inputs label.male {
+                color: #1185d0;
+                text-align: left;
+                width: 48%;
+                margin: 0;
+                background: rgba(17, 133, 208, 0.3); }
+    #registration_form fieldset.closed {
+      height: 50px;
+      overflow: hidden; }
+      #registration_form fieldset.closed legend {
+        color: white; }
+      #registration_form fieldset.closed:hover {
+        height: 60px; }
+        #registration_form fieldset.closed:hover legend {
+          color: #ffe400; }
+    #registration_form fieldset.unavailable legend {
+      color: #8cd6af; }
