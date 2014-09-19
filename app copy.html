@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/style.css" type="text/css" />
+		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+		<script>
+			$( document ).ready(function() {
+			  
+			  $("[id^='Section']").removeClass("unavailable");
+			  $("[id^='Section']").mouseup(function() {
+			  	$("[id^='Section']").addClass("closed");
+			  	$(this).removeClass("closed");
+			  });
+			  $("[id^='step']").mouseup(function() {
+			  	$("[id^='Section']").addClass("closed");
+			  	var section_no = "#Section"+$(this).attr('id').substr(4);
+			  	$(section_no).removeClass("closed");
+			  });
+			  
+			});
+		</script>
+	</head>
+	<body>
+		<div id="registration_form">
+			<div id="wizard">
+				<div id="step1" class="first">Basic Information</div>
+				<div id="step2" class="">Anticipated Enrollment Information</div>
+				<div id="step3" class="">Address Information</div>
+				<div id="step4" class="">Education and Employment History</div>
+				<div id="step5" class="">Upload Documents</div>
+				<div id="step6" class="last">Admissions Agreement and Terms of Service</div>
+			</div>
+			<fieldset id="Section1">
+			
+				<legend><strong>1</strong> Basic Information</legend>
+				<ol>
+					<li>
+						<label for="">Legal First Name</label>
+						<input type="" name="" value="" placeholder="Max. 15 characters"/>
+					</li>
+					<li>
+						<label for="">Legal Middle Name</label>
+						<input type="" name="" value="" placeholder="Max. 15 characters"/>
+					</li>
+					<li>
+						<label for="">Legal Last Name</label>
+						<input type="" name="" value="" placeholder="Max. 30 characters"/>
+					</li>
+					<li>
+						<label for="">Preferred Name</label>
+						<input type="" name="" value="" placeholder="Max. 30 characters"/>
+					</li>
+					<li>
+						<label for="">Email Address</label>
+						<input type="email" name="" value="" placeholder="name@domain.sfx"/>
+					</li>
+					<li>
+						<label for="">Date of Birth</label>
+						<select>
+							<!-- let's populate this with js later -->
+							<option value="">Year</option>
+							
+						</select>
+						<select>
+							<!-- let's populate this with js later -->
+							<option value="">Month</option>
+							
+						</select>
+						<select>
+							<!-- let's populate this with js later -->
+							<option value="">Day</option>
+							
+						</select>
+					</li>
+					<li>
+						<label>Gender</label>
+						<span class="inputs">
+							<label class="female">
+								<input type="radio" name="invoice-address" /> 
+								Female
+							</label>
+							<label class="male">
+						        <input type="radio" name="invoice-address" /> 
+								Male
+							</label>
+						</span>
+					</li>
+					<li>
+						<label for="">Cell Phone Number</label>
+						<input type="number" name="" value="" placeholder="123-456-7890" />
+					</li>
+					<li>
+						<label for="">Who referred you to ITU</label>
+						<select>
+								<option value="">Select One</option>
+								<option value="">Friend</option>
+								<option value="">Current Student</option>
+								<option value="">Alumni</option>
+								<option value="">ITU Employee</option>
+								<option value="">Agent</option>
+						
+							</select>
+					</li>
+					<li class="optional">
+						<label for="">Please type the representative's name</label>
+						<input type="" name="" value="" placeholder="Max. 30 characters"/>
+					</li>
+					<li>
+						<label for="">Social Security Number</label>
+						<input type="number" name="" value="" placeholder="123-45-6789" />
+					</li>
+					<li>
+						<label for="">	 Passport Number</label>
+						<input type="" name="" value="" placeholder="Max. 30 characters"/>
+					</li>
+					<li>
+						<label>Are you a US Citizen or a US Permanent Resident (Green Card Holder)?</label>
+						<span class="inputs">
+							<label class="yes">
+								<input type="radio" name="invoice-address" /> 
+								Yes
+							</label>
+							<label class="no">
+						        <input type="radio" name="invoice-address" /> 
+								No
+							</label>
+						</span>
+					</li>
+					<li>
+						<label for="">What is your country of citizenship?</label>
+						<select>
+								<option value="">Select One</option>
+								<!-- let's populate this with js later -->
+						</select>
+					</li>
+					<li>
+						<label for="">What is your country of birth?</label>
+						<select>
+								<option value="">Select One</option>
+								<!-- let's populate this with js later -->
+						</select>
+					</li>
+					<li>
+						<label>Ethnicity</label>
+						<span class="inputs">
+							<label class="choice separate_line">
+								<input type="radio" name="" /> 
+								Hispanic/Latino
+							</label>
+							<label class="choice separate_line">
+						        <input type="radio" name="" /> 
+								Not Hispanic/Latino
+							</label>
+							<label class="choice separate_line">
+							    <input type="radio" name="" /> 
+								Unreported
+							</label>
+						</span>
+					</li>
+					<li class="optional">
+						<label for="">Race</label>
+						<span class="inputs">
+							<label class="choice separate_line">
+								<input type="checkbox" name="" value="">American Indian or Alaska Native
+							</label>
+							<label class="choice separate_line">
+								<input type="checkbox" name="" value="">Asian
+							</label>
+							<label class="choice separate_line">
+								<input type="checkbox" name="" value="">Black or African American
+							</label>
+							<label class="choice separate_line">
+								<input type="checkbox" name="" value="">Native Hawaiian or Other Pacific Islander
+							</label>
+							<label class="choice separate_line">
+								<input type="checkbox" name="" value="">White
+							</label>
+						</span>
+					</li>
+					
+				</ol>
+			</fieldset>
+			<fieldset id="Section2" class="unavailable closed">
+				<legend><strong>2</strong> Anticipated Enrollment Information</legend>
+				<ol>
+					<li>
+						<label for="">Anticipated Academic Enroll Year</label>
+						<span class="inputs">2014-2015</span>
+					</li>
+					<li>
+						<label for="">Anticipated Academic Enroll Term</label>
+						<select>
+							<option value="">Select One</option>
+							<option value="SP">Spring</option>
+							<option value="SU">Summer</option>
+						</select>
+					</li>
+					<li>
+						<label for="">Have you studied at ITU in the past?</label>
+						<select>
+							<option value="">Select One</option>
+							<option value="1">No, I am a new student.</option>
+							<option value="2">Yes I am an ITU alumni.</option>
+							<option value="3">Yes, I am a returning student wishing to complete my program.</option>					
+						</select>
+					</li>
+					<li class="optional">
+						<label for="">ITU Alumni student ID number</label>
+						<input type="number" name="" value="" />
+					</li>
+					<li>
+						<label for="">Program of Interest</label>
+						<select>
+							<option value="">Select One</option>
+							<option value="MBA">Master of Business Administration</option>
+							<option value="MSCE">Master of Science in Computer Engineering</option>
+							<option value="MSDA">Master of Science in Digital Arts</option>
+							<option value="MSEE">Master of Science in Electrical Engineering</option>
+							<option value="MSEM">Master of Science in Engineering Management</option>
+							<option value="MSSE">Master of Science in Software Engineering</option>
+							<option value="PHD">PhD in Electrical Engineering</option>
+							<option value="PHD">PhD in Interdisciplinary Sciences</option>
+							<option value="DBA">Doctorate in Business Administration</option>
+							<option value="CERT">Certification Program</option>
+						</select>
+					</li>
+					<li>
+						<label for="">MBA Concentration</label>
+						<select>
+							<option value="">Select One</option>
+							<option value="ACTN">Accounting</option>
+							<option value="BIOM">Bio Management</option>
+							<option value="DGM">Digital Media Management</option>
+							<option value="ERP">ERP/SAP</option>
+							<option value="FINN">Finance</option>
+							<option value="GEMBA">General MBA</option>
+							<option value="HCM">Healthcare Management</option>
+							<option value="HRMG">Human Resources</option>
+							<option value="MISY">Info Systems Management</option>
+							<option value="INTBU">International Business</option>
+							<option value="MGMT">Management</option>
+							<option value="MKTG">Marketing</option>
+							<option value="PMGT">Project Management</option>
+						</select>
+					</li>
+				</ol>
+				
+			</fieldset>
+			<fieldset id="Section3" class="unavailable closed">
+				<legend><strong>3</strong> Address Information</legend>
+				<ol>
+					<li>
+						<label for="">Main Address Line</label>
+						<input type="" name="" value="" />
+					</li>
+					<li>
+						<label for="">Additional Address Line</label>
+						<input type="" name="" value="" />
+					</li>
+					<li>
+						<label for="">Additional Address Line</label>
+						<input type="" name="" value="" />
+					</li>
+					<li>
+						<label for="">Postal Code/Zip Code</label>
+						<input type="" name="" value="" />
+					</li>
+					<li>
+						<label for="">City</label>
+						<input type="" name="" value="" />
+					</li>
+					<li>
+						<label for="">Country</label>
+						<select>
+							<option>select one</option>
+							<!-- Let's decide about this later -->
+						</select>
+					</li>
+					<section>
+						<li>
+							<label for="">Main Address Line</label>
+							<input type="" name="" value="" />
+						</li>
+						<li>
+							<label for="">Additional Address Line</label>
+							<input type="" name="" value="" />
+						</li>
+						<li>
+							<label for="">Additional Address Line</label>
+							<input type="" name="" value="" />
+						</li>
+						<li>
+							<label for="">Postal Code/Zip Code</label>
+							<input type="" name="" value="" />
+						</li>
+					</section>
+				</ol>
+			</fieldset>
+			<fieldset id="Section4" class="unavailable closed">
+				<legend><strong>4</strong> Education and Employment History</legend>
+				<section>
+					<h2>Education</h2>
+					<h3>Most recent</h3>
+					<ol>
+						<li>
+							<label>College/University</label>
+							<input type="" name="" value="" />
+						</li>
+						<li>
+							<label>Faculty</label>
+							<input type="" name="" value="" />
+						</li>
+						<li>
+							<label>Course</label>
+							<input type="" name="" value="" />
+						</li>
+						<li>
+							<label>City</label>
+							<input type="" name="" value="" />
+						</li>
+						<li>
+							<label for="">Country</label>
+							<select>
+								<option>select one</option>
+								<!-- Let's decide about this later -->
+							</select>
+						</li>
+						<li class="optional">
+							<!-- let's male this optional for countries like: USA, Mexico, Brazil, India, Australia, Germany and Myanmar (Burma) -->
+							<label>State</label>
+							<input type="" name="" value="" />
+						</li>
+						<li>
+							<label>Start Date</label>
+							<input type="date" name="" value="" />
+						</li>
+						<li>
+							<label>End Date</label>
+							<input type="date" name="" value="" />
+						</li>
+						<li>
+							<label>Are you currently enrolled?</label>
+							<span class="inputs">
+								<label class="yes">
+									<input type="radio" name="invoice-address" /> 
+									Yes
+								</label>
+								<label class="no">
+							        <input type="radio" name="invoice-address" /> 
+									No
+								</label>
+							</span>
+						</li>
+					</ol>
+				</section>
+				<section>
+					<h2>Education</h2>
+					<h3>Additional</h3>
+					<button>+ Add College</button>
+				</section>
+				<section>
+					<h2>Employment Experience</h2>
+					<h3>Most recent</h3>
+					<ol>
+						<li>
+							<label>Employer Name</label>
+							<input type="" name="" value="" />
+						</li>
+						<li>
+							<label>Job Title</label>
+							<input type="" name="" value="" />
+						</li>
+						<li>
+							<label>City</label>
+							<input type="" name="" value="" />
+						</li>
+						<li>
+							<label for="">Country</label>
+							<select>
+								<option>select one</option>
+								<!-- Let's decide about this later -->
+							</select>
+						</li>
+						<li class="optional">
+							<!-- let's male this optional for countries like: USA, Mexico, Brazil, India, Australia, Germany and Myanmar (Burma) -->
+							<label>State</label>
+							<input type="" name="" value="" />
+						</li>
+						<li>
+							<label>Start Date</label>
+							<input type="date" name="" value="" />
+						</li>
+						<li>
+							<label>End Date</label>
+							<input type="date" name="" value="" />
+						</li>
+					</ol>
+				</section>
+				<section>
+					<h2>Employment Experience</h2>
+					<h3>Additional</h3>
+					<button>+ Add More</button>
+				</section>
+			</fieldset>
+			<fieldset id="Section5" class="unavailable closed">
+				<legend><strong>5</strong> Document Upload</legend>
+				<ol>
+					<li>
+						<label for="">Bank Statement</label>
+						<span class="inputs">
+							<input type="file" name="" value="" />
+							<input type="submit" name="" value="upload" />
+						</span>
+					</li>
+					<li>
+						<label for="">Transcripts</label>
+						<span class="inputs">
+							<input type="file" name="" value="" />
+							<input type="submit" name="" value="upload" />
+						</span>
+					</li>
+					<li>
+						<label for="">Statement of Purpose</label>
+						<span class="inputs">
+							<input type="file" name="" value="" />
+							<input type="submit" name="" value="upload" />
+						</span>
+					</li>
+					<li>
+						<label for="">Wes Evaluation Report </label>
+						<span class="inputs">
+							<input type="file" name="" value="" />
+							<input type="submit" name="" value="upload" />
+						</span>
+					</li>
+					<li>
+						<label for="">TOFEL Score</label>
+						<span class="inputs">
+							<input type="file" name="" value="" />
+							<input type="submit" name="" value="upload" />
+						</span>
+					</li>
+					<li>
+						<label for="">Gre Score card</label>
+						<span class="inputs">
+							<input type="file" name="" value="" />
+							<input type="submit" name="" value="upload" />
+						</span>
+					</li>
+					<li>
+						<label for="">Others</label>
+						<span class="inputs">
+							<input type="file" name="" value="" />
+							<input type="submit" name="" value="upload" />
+						</span>
+					</li>
+					<li><button>+ Add More</button></li>
+				</ol>
+				
+			</fieldset>
+			<fieldset id="Section6" class="unavailable closed">
+				<legend><strong>6</strong> 	Admissions Agreement and Terms of Service</legend>
+				<ol>
+					<li>
+						<p>BY SELECTING "I AGREE" I CERTIFY THAT ALL OF THE ANSWERS I WILL PROVIDE IN THIS APPLICATION ARE COMPLETE AND ACCURATE TO THE BEST OF MY KNOWLEDGE AND, IF ADMITTED, I AGREE TO OBSERVE ALL THE RULES AND REGULATIONS OF INTERNATIONAL TECHNOLOGICAL UNIVERSITY. FAILURE TO DO SO CAN RESULT IN DISCIPLINARY ACTION. I AGREE THAT ALL DOCUMENTS SUBMITTED AS PART OF THIS APPLICATION ARE AUTHENTIC AND THAT ANY FALSIFICATION OR OMISSION OR MISSTATEMENT BY ME IN THIS APPLICATION MAY RESULT IN CANCELLATION OF MY ADMISSION AND/OR OTHER DISCIPLINARY ACTION BY INTERNATIONAL TECHNOLOGICAL UNIVERSITY.</p>
+						<label for="" class="full_width">
+							<input type="checkbox" name="" value=""/>
+							I Agree
+						</label>
+					</li>
+					<li>
+						<p>BY SELECTING "I AGREE", I AGREE TO PAY A NON-REFUNDABLE APPLICATION FEE OF $80 USD TO BE CONSIDERED FOR ADMISSION AT INTERNATIONAL TECHNOLOGICAL UNIVERSITY. I UNDERSTAND THIS FEE IS NOT REFUNDABLE, AND PAYING THIS FEE DOES NOT GUARANTEE ADMISSION IN ANY WAY. IF I AM PAYING MY NON-REFUNDABLE APPLICATION FEE USING A THIRD PARTY CREDIT CARD (I.E. A CREDIT CARD WHICH DOESN'T BELONG TO THE APPLICANT), I HEREBY ACKNOWLEDGE THAT I HAVE RELAYED THE TERMS AND CONDITIONS TO THE THIRD PARTY CARD HOLDER AND HAVE HIS OR HER CONSENT IN MAKING A NON-REFUNDABLE PAYMENT. I AGREE THAT IF THE THIRD PARTY CARD HOLDER DISPUTES THE TRANSACTION AT A LATER DATE, FOR ANY REASON, I AS THE APPLICANT WILL BE HELD FULLY LIABLE FOR ALL FEES AND PENALTIES INCURRED FROM THE DISPUTE OF PAYMENT, INCLUDING THE ORIGINAL $80 NON-REFUNDABLE APPLICATION FEE.</p>
+						<label for="" class="full_width">
+							<input type="checkbox" name="" value=""/>
+							I Agree
+						</label>
+					</li>
+					<li>
+						<label for="">Cardholder Name</label>
+						<input type="" name="" value="" />
+					</li>
+				</ol>
+			</fieldset>
+		</div>
+	</body>
+</html>

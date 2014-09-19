@@ -1,0 +1,190 @@
+/* widths */
+$mobile: 320px;
+$tablet: 640px;
+$laptop: 960px;
+$desktop: 1200px;
+
+/* colors */
+
+$green: 	#709588;
+$green_l: 	#8cd6af;
+$yellow: 	#ffe400;
+$red: 		#db3900;
+$blue: 		#1185d0;
+$grey:		#807a84;
+$grey_l:	#b8b3bc;
+$grey_xl:	#ddd8e0;
+
+@mixin border_size($method){
+	box-sizing: $method;
+	-webkit-box-sizing: $method;
+	-moz-box-sizing: $method;
+	-o-box-sizing: $method;
+}
+
+body{
+	font-family: "Roboto", sans-serif;
+	
+}
+
+#registration_form{
+	width: $laptop;
+	margin: 0 auto;
+	#wizard{
+		width: $laptop;
+		div{
+			@include border_size(border-box);
+			padding: 10px;
+			width: 16.66%;
+			display: inline-block;
+			float: left;
+			background: $green;
+			color: white;
+			border-right: 1px solid white;
+		}
+	}
+	fieldset{
+		
+		border: 0;
+		padding: 0;
+		height: auto;
+		
+		-webkit-transition: all 0.5s ease-in-out;
+		-moz-transition: all 0.5s ease-in-out;
+		-ms-transition: all 0.5s ease-in-out;
+		transition: all 0.5s ease-in-out;
+		
+		@include border_size(border-box);
+		
+		legend{
+			height: 40px;
+			width: 100%;
+			font-size: 2rem;
+			font-weight: 100;
+			background: $green;
+			color: white;
+			margin: 0;
+			padding: 0 15px;
+			line-height: 2.5rem;
+			vertical-align: top;
+			overflow: hidden;
+			strong{
+				font-size: 4rem;
+				font-weight: 900;
+				line-height: 2.8rem;
+			}
+		}
+		ol{
+			li{
+				float: left;
+				text-align: left;
+				width: 100%;
+				display: block;
+				&.optional{
+					opacity: .3;
+				}
+				label{
+					display: block;
+					width: 30%;
+					float: left;
+					text-align: right;
+					margin: 5px 4%;
+					color: $grey_l;
+				}
+				input{
+					float: left;
+					width: 60%;
+					background: $grey_xl;
+					border: none;
+				    padding: 5px;
+				    margin-top: 5px;
+				    &[type="radio"], &[type="checkbox"]{
+					    width: auto;
+					    margin: 5px 10px;
+				    }
+				}
+				select{
+					background: $grey_xl;
+					border: none;
+				}
+				span.inputs{
+					width: 60%;
+					display: block;
+					float: left;
+					text-align: left;
+					label{
+						width: inherit;
+						text-align: left;
+						&.choice{
+							//text-align: left;	
+						}
+						&.separate_line{
+							display: block;
+							clear: both;
+						}
+						&.yes{
+							color: $green;
+							text-align: right;
+							width: 48%;
+							margin: 0;
+							background: rgba($green,.3);
+							input{
+								float: right
+							}
+						}
+						&.no{
+							color: $red;
+							text-align: left;
+							width: 48%;
+							margin: 0;
+							background: rgba($red,.3);
+						}
+						&.female{
+							color: $red;
+							text-align: right;
+							width: 48%;
+							margin: 0;
+							background: rgba($red,.3);
+							input{
+								float: right
+							}
+						}
+						&.male{
+							color: $blue;
+							text-align: left;
+							width: 48%;
+							margin: 0;
+							background: rgba($blue,.3);
+						}
+
+					}
+				}
+			}
+		}
+		&.closed{
+			height: 26px;
+			overflow: hidden;
+			legend{
+				color: rgba(white,.8);
+				
+			}
+			&:hover{
+				legend{
+					color: $yellow;
+					
+				}
+				height: 60px;
+			}
+		}
+		&.unavailable{
+
+			legend{
+				background: $grey_xl;
+				color: $grey_l;
+				strong{
+					
+				}
+			}
+		}
+	}
+}
