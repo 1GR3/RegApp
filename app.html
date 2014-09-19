@@ -8,6 +8,25 @@
 		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<script type="text/javascript" src="js/gentle_anchors_1.2.5.js"></script>
+		<script src="http://code.createjs.com/easeljs-0.7.1.min.js"></script>
+		<script src="http://code.createjs.com/tweenjs-0.5.1.min.js"></script>
+		<script src="http://code.createjs.com/movieclip-0.7.1.min.js"></script>
+		<script src="js/clock.js"></script>
+		<script>
+			var canvas, stage, exportRoot;
+			
+			function init() {
+				canvas = document.getElementById("canvas");
+				exportRoot = new lib.clock();
+			
+				stage = new createjs.Stage(canvas);
+				stage.addChild(exportRoot);
+				stage.update();
+			
+				createjs.Ticker.setFPS(lib.properties.fps);
+				createjs.Ticker.addEventListener("tick", stage);
+			}
+		</script>
 		<script>
 			$( document ).ready(function() {
 				var OSName="Unknown OS";
@@ -39,9 +58,10 @@
 					$("[id^='Section']").removeClass("hidden");
 					$("#signButtons a").addClass("hidden");
 					$("#welcome h2").removeClass("hidden");
+					$("#idNumber").removeClass("hidden");
 					Gentle_Anchors.Setup('#wizzard');
 				}
-				
+								
 				var signFlag=0;
 				$( "input#gotoSignIn" ).click(function() {
 					if (signFlag==0){
@@ -93,25 +113,54 @@
 				  	Gentle_Anchors.Setup('#s'+$(this).attr('id').substr(4));
 				});
 				
+				function pending() {
+					var overlayHeight = $("#Section7 #docInputs").height();
+					alert(overlayHeight);
+					$("#overlay").removeClass("hidden");
+					$("#overlay").css({
+						"height": overlayHeight,
+						"margin-top": -overlayHeight,
+						"background": "red",
+					});
+				}
+				//pending();
+				
+				function congratulations(){
+					$("#wizard").addClass("hidden");
+					$("#welcome").addClass("hidden");
+					$("fieldset").addClass("hidden");
+					$("#registration_form").css({"min-height": "100%"});
+					$("#Section7").removeClass("hidden");
+				}
+				$( "#step7").click(function() {
+					congratulations();
+				});
+				
 				
 				$(window).scroll(function() {
 				if ($(this).scrollTop() > $( window ).height() - $( "footer" ).height() ){  
 				    $('#wizard').addClass("sticky");
+				    $('#idNumber').addClass("sticky");
 				  }
 				  else{
 				    $('#wizard').removeClass("sticky");
+				    $('#idNumber').removeClass("sticky");
 				  }
 				});
 			  
 			});
 		</script>
 	</head>
-	<body>
+	<body onload="init();">
 		<div id="registration_form">
 			<div id="welcome" class="">
 				<section class="wrapper">
 					<img src="img/logo.png" class="logo" alt="" />
 					<!--<h3>is waiting at you!</h3>-->
+					<div id="idNumber" class="hidden">
+						<span>12345678</span><br>
+						<a>Sign Out</a>
+					</div>
 					<h1>Become a student</h1>
 					<h2 class="hidden">in these six easy steps</h2>
 					<fieldset id="signButtons" class="imageBG">
@@ -127,7 +176,7 @@
 			<fieldset id="SignUpForm" class="greenBG hidden">
 				<section>
 					<div class="wrapper">
-						<h3 class="signUp">Please, enter the following data:</legend>
+						<h3 class="signUp">Please, enter the following data:</h3>
 					</div>
 					<ol class="wrapper">
 						<li class="double">
@@ -201,7 +250,10 @@
 					</div>
 					<div id="step5" class="unavailable">
 						<a href="#s5">
-							<span class="number">5</span>
+							<span class="number clock">
+								<!--5-->
+								<canvas id="canvas" width="35" height="35"></canvas>
+							</span>
 							<h4>Upload Documents</h4>
 						</a>
 					</div>
@@ -212,7 +264,7 @@
 						</a>
 					</div>
 					<div id="step7" class="unavailable last">
-						<a href="">
+						<a href="#s7">
 							<span class="number"><i class="fa fa-check"></i></span>
 							<h4>Complete</h4>
 						</a>
@@ -397,24 +449,23 @@
 					<ol class="wrapper">
 						<li>
 							<label for="">Anticipated Academic Enroll Year</label>
-							<span class="inputs">
-								<label class="clean">2014-2015</label>
-							</span>
+							<select>
+								<option value="">Select One</option>
+								<option value="1">2014-2015</option>
+								<option value="2">Spring</option>
+								<option value="3">2015-2016</option>					
+							</select>
 						</li>
 						<li>
 							<label for="">Anticipated Academic Enroll Term</label>
-							<span class="inputs">
-								<label class="left">
-									<input type="radio" name="invoice-address" /> 
-									Spring
-								</label>
-								<label class="right">
-							        <input type="radio" name="invoice-address" /> 
-									Summer
-								</label>
-							</span>
+							<select>
+								<option value="">Select One</option>
+								<option value="1">Fall</option>
+								<option value="2">Spring</option>
+								<option value="3">Summer</option>					
+							</select>
 						</li>
-						<li>
+						<li class="double">
 							<label for="">Have you studied at ITU in the past?</label>
 							<select>
 								<option value="">Select One</option>
@@ -423,11 +474,11 @@
 								<option value="3">Yes, I am a returning student wishing to complete my program.</option>					
 							</select>
 						</li>
-						<li class="optional">
+						<li class="optional double">
 							<label for="">ITU Alumni student ID number</label>
 							<input type="number" name="" value="" />
 						</li>
-						<li>
+						<li class="double">
 							<label for="">Program of Interest</label>
 							<select>
 								<option value="">Select One</option>
@@ -443,25 +494,7 @@
 								<option value="CERT">Certification Program</option>
 							</select>
 						</li>
-						<li>
-							<label for="">MBA Concentration</label>
-							<select>
-								<option value="">Select One</option>
-								<option value="ACTN">Accounting</option>
-								<option value="BIOM">Bio Management</option>
-								<option value="DGM">Digital Media Management</option>
-								<option value="ERP">ERP/SAP</option>
-								<option value="FINN">Finance</option>
-								<option value="GEMBA">General MBA</option>
-								<option value="HCM">Healthcare Management</option>
-								<option value="HRMG">Human Resources</option>
-								<option value="MISY">Info Systems Management</option>
-								<option value="INTBU">International Business</option>
-								<option value="MGMT">Management</option>
-								<option value="MKTG">Marketing</option>
-								<option value="PMGT">Project Management</option>
-							</select>
-						</li>
+						
 						<li class="double">
 							<input type="button" name="" value="Confirm and Proceed to the Next Step" />
 						</li>
@@ -646,55 +679,78 @@
 				<header class="wrapper">
 					<legend><strong>5</strong><a id="s5"><i class="fa fa-paperclip"></i>Document Upload</a></legend>
 				</header>
-				<section>
+				<section id="docInputs">
 					<ol class="wrapper">
-						<li>
-							<label for="">Bank Statement</label>
-							<span class="inputs">
-								<input type="file" name="" value="" />
-								<!--<input type="submit" name="" value="upload" />-->
-							</span>
-						</li>
-						<li>
-							<label for="">Transcripts</label>
-							<span class="inputs">
-								<input type="file" name="" value="" />
-								<!--<input type="submit" name="" value="upload" />-->
-							</span>
-						</li>
-						<li>
+						<li class="double">
 							<label for="">Statement of Purpose</label>
 							<span class="inputs">
 								<input type="file" name="" value="" />
 								<!--<input type="submit" name="" value="upload" />-->
 							</span>
 						</li>
-						<li>
+						<li class="double">
+							<label for="">Transcripts</label>
+							<span class="inputs">
+								<input type="file" name="" value="" />
+								<!--<input type="submit" name="" value="upload" />-->
+							</span>
+						</li>
+						<li class="double">
+							<label for="" class>Bank Statement</label>
+						</li>
+						<li class="aHalf">
+							<span class="inputs">
+								<input type="number" name="" value="" placeholder="current amount"/>
+							</span>
+						</li>
+						<li class="oneAndaHalf">
+							<span class="inputs">
+								<input type="file" name="" value="" />
+							</span>
+						</li>
+						<li class="double">
 							<label for="">Wes Evaluation Report </label>
+						</li>
+						<li class="aHalf">
 							<span class="inputs">
-								<input type="file" name="" value="" />
-								<!--<input type="submit" name="" value="upload" />-->
+								<input type="number" name="" value="" placeholder="score"/>
 							</span>
 						</li>
-						<li>
+						<li class="oneAndaHalf">
+							<span class="inputs">
+								<input type="file" name="" value="" />
+							</span>
+						</li>
+						<li class="double">
 							<label for="">TOFEL Score</label>
+						</li>
+						<li class="aHalf">
 							<span class="inputs">
-								<input type="file" name="" value="" />
-								<!--<input type="submit" name="" value="upload" />-->
+								<input type="number" name="" value="" placeholder="score"/>
 							</span>
 						</li>
-						<li>
-							<label for="">Gre Score card</label>
+						<li class="oneAndaHalf">
 							<span class="inputs">
 								<input type="file" name="" value="" />
-								<!--<input type="submit" name="" value="upload" />-->
+							</span>
+						</li>
+						<li class="double">
+							<label for="">Gre Score card</label>
+						</li>
+						<li class="aHalf">
+							<span class="inputs">
+								<input type="number" name="" value="" placeholder="score"/>
+							</span>
+						</li>
+						<li class="oneAndaHalf">
+							<span class="inputs">
+								<input type="file" name="" value="" />
 							</span>
 						</li>
 						<li>
 							<label for="">Others</label>
 							<span class="inputs">
 								<input type="file" name="" value="" />
-								<!--<input type="submit" name="" value="upload" />-->
 							</span>
 						</li>
 						<li>
@@ -705,6 +761,11 @@
 							<input type="button" name="" value="Upload and Proceed to the Next Step" />
 						</li>
 					</ol>
+				</section>
+				<section id="overlay" class="wrapper hidden">
+					<h1>Pennding!</h1>
+					<h2>Our staff is working on your application</h2>
+					<p>Youll get an email</p>
 				</section>
 			</fieldset>
 			<fieldset id="Section6" class="whiteBG unavailable closed hidden">
@@ -741,18 +802,21 @@
 					</ol>
 				</section>
 			</fieldset>
-			<fieldset>
-				<!--<div id="colortest" class="wrapper" style="background: white;">
-					<div class="block g1"></div>
-					<div class="block g2"></div>
-					<div class="block g3"></div>
-					<div class="block g4"></div>
-					
-				</div>-->
+			<fieldset id="Section7" class="greenBG unavailable closed hidden">
+				<section class="wrapper finished">
+					<a id="s7"></a>
+					<h1>Congratulations!</h1>
+					<h2>FirstName,<br> you have just became a student at ITU.</h2>
+					<p>Ad hendrerit bibendum consectetur ultrices a cubilia mi id netus dignissim iaculis orci dis parturient parturient. Laoreet eleifend molestie consequat parturient cum adipiscing phasellus diam a a eget primis in cum parturient vehicula dapibus gravida ullamcorper risus quam at facilisi nostra nisl arcu laoreet. Suspendisse aliquam a egestas porta.</p>
+					<p>
+					  Platea conubia a nulla cras parturient consectetur inceptos ligula ac nostra nam adipiscing gravida a a. Pretium nisi nostra volutpat morbi fringilla ut mi a mi adipiscing natoque sagittis condimentum eleifend feugiat ante ullamcorper convallis. Nulla est scelerisque placerat tristique eget scelerisque vestibulum faucibus a hac hac vestibulum nibh a parturient adipiscing nunc luctus integer ante sociis rutrum a a adipiscing ullamcorper mauris a.</p>
+				</section>
 			</fieldset>
 			<footer id="footer">
 				<section class="wrapper">
-					<h3>This line might be used for copyright but now it has just a visual purpose.</h3>
+					<a href="http://">ITU Homepage</a> | 
+					<a href="http://">FAQ</a> | 
+					<a href="http://">EMS</a>
 				</section>
 			</footer>
 		</div>

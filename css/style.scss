@@ -165,7 +165,7 @@ h3{
 		transition: all .5s; 
 		@include border_size(border-box);
 		&::-webkit-input-placeholder{
-			color: $green_xl;
+			color: $green_l;
 		} 
 		&[type=radio]{
 			display: block;
@@ -185,11 +185,11 @@ h3{
 			}
 		}
 		&[type=button]{
-			@include inputColors(white, $green_d, $green_l);
+			@include inputColors(white, $green_xd, $green_l);
 			&:hover{
 				//@include inputColors($yellow, $green_xd, $yellow);
 				color: $yellow;
-				background-color: $green_xd;
+				background-color: $green_d;
 				@include highlightGradient();
 			}
 		}
@@ -310,9 +310,8 @@ h3{
 			@include inputColors($green_l, $green_xd, $green_xl);
 			margin-top: 20px;
 			&:hover{
-				//@include inputColors($yellow, $green_xd, $yellow);
-				color: $yellow;
-				background-color: $green_xd;
+				@include inputColors($yellow, $green_d, $yellow);
+				//background-color: $green_xd;
 				@include highlightGradient();
 			}
 		}
@@ -495,11 +494,11 @@ h3{
 			}
 		}
 		&[type=button]{
-			@include inputColors($green_l, $green_d, $green_l);
+			@include inputColors($green_l, $green_xd, $green_xl);
+			
 			&:hover{
-				//@include inputColors($yellow, $green_xd, $yellow);
-				color: $yellow;
-				background-color: $green_xd;
+				@include inputColors($yellow, $green_d, $yellow);
+				//background-color: $green_xd;
 				@include highlightGradient();
 			}
 		}
@@ -588,11 +587,12 @@ a.btn{
 }
 
 #registration_form{
+	//min-height:100%;
+	//position:relative;
 	width: 100%;
 	margin: 0 auto;
 	background: $green_xd;
 	overflow-x: hidden;
-	
 	
 	fieldset#signButtons{
 		position: absolute; 
@@ -642,6 +642,38 @@ a.btn{
 		background-position: center top;
 		background-repeat: no-repeat;
 		background-attachment: fixed;
+		
+		#idNumber{
+			position: fixed;
+			top: 0;
+			right: 0;
+			padding: 5px 15px;
+			background: rgba($green_xd,.3);
+			opacity: 1;
+			transition: all 1s;
+			z-index: 500;
+			span{
+				color: $yellow;
+				letter-spacing: 4px;
+				font-family: monospace;
+				font-size: 1.6rem;
+			}
+			a{
+				text-align: right;
+				float: right;
+				color: white;
+				&:hover{
+					text-decoration: underline;
+				}
+			}
+			&.hidden{
+				opacity: 0;
+				display: block;
+			}
+			&.sticky{
+				padding: 18px 18px;
+			}
+		}
 		
 		img{
 			margin: 20px 0;
@@ -709,6 +741,9 @@ a.btn{
 						position: relative;
 						cursor: initial;
 					}
+					&.clock:after{
+						bottom: 82%;
+					}
 					
 				}
 			}
@@ -747,7 +782,7 @@ a.btn{
 			
 			legend{
 				height: 50px;
-				font-size: 2rem;
+				//font-size: 2rem;
 				font-weight: 100;
 				color: $yellow;
 				margin-left: 30px;
@@ -755,6 +790,9 @@ a.btn{
 				line-height: 2.5rem;
 				vertical-align: top;
 				overflow: hidden;
+				font-size: 1.6rem;
+				text-transform: uppercase;
+				
 				strong{
 					font-size: 4rem;
 					font-weight: 900;
@@ -803,12 +841,32 @@ a.btn{
 							width: 98%;
 							margin: 10px 1%;
 						}
+						span.inputs{
+							input[type=file]{
+								width: 82%;
+								margin-left: 14%;
+								margin-top: 0;
+								&:before{
+									left: -160px;
+								}
+							}
+						}
 					}		
 					&.oneAndaHalf{
 						width: 75%;
 						select{
 							width: 97%;
 							margin: 10px 1.5%;
+						}
+						span.inputs{
+							input[type=file]{
+								width: 75%;
+								margin-left: 20%;
+								margin-top: 0;
+								&:before{
+									left: -160px;
+								}
+							}
 						}
 					}
 					&.aHalf{
@@ -864,9 +922,49 @@ a.btn{
 				}
 			}
 		}
+		
+	}
+}
+
+section#overlay{
+	background: rgba(white,.5);
+	h1{
+		text-align: center;
+		color: $green_l;
+	}
+	h2{
+		color: $green_d;
+	}
+	p{
+		color: $green_xd;
+		font-size: 1.2rem;
+	}
+}
+
+#Section7{
+	padding-bottom: 80px;
+	section.finished{
+		h1{
+			text-align: center;
+		}
+		h2{
+			color: $green_xl;
+		}
+		p{
+			color: white;
+			font-size: 1.2rem;
+		}
 	}
 }
 footer{
 	@include greenBG();
-	padding: 5px 0;
+	padding: 10px 0;
+	text-align: center;
+	a{
+		color: white;
+		text-decoration: none;
+		&:hover{
+			text-decoration: underline;
+		}
+	}
 }

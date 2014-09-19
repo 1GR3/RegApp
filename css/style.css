@@ -112,7 +112,7 @@ h3 {
       background-image: linear-gradient(to right, #006644 0%, #ffe400 100%);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#006644', endColorstr='#ffe400',GradientType=1 ); }
     .greenBG input::-webkit-input-placeholder {
-      color: #b0f0cc; }
+      color: #8cd6af; }
     .greenBG input[type=radio] {
       display: block;
       height: 30px;
@@ -129,7 +129,7 @@ h3 {
         content: "\25AE"; }
     .greenBG input[type=button] {
       color: white;
-      background: #009966;
+      background: #006644;
       background-image: -webkit-linear-gradient(left, #8cd6af 0%, #8cd6af 100%);
       background-size: 100% 5px;
       background-position: 0 100%, 0 0;
@@ -138,7 +138,7 @@ h3 {
         border-color: white; }
       .greenBG input[type=button]:hover {
         color: #ffe400;
-        background-color: #006644;
+        background-color: #009966;
         background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwNjY0NCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmU0MDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
         background-image: -moz-linear-gradient(left, #006644 0%, #ffe400 100%);
         background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, #006644), color-stop(100%, #ffe400));
@@ -381,7 +381,11 @@ h3 {
         border-color: #8cd6af; }
       .whiteBG input[type=button]:hover {
         color: #ffe400;
-        background-color: #006644;
+        background: #009966;
+        background-image: -webkit-linear-gradient(left, #ffe400 0%, #ffe400 100%);
+        background-size: 100% 5px;
+        background-position: 0 100%, 0 0;
+        background-repeat: no-repeat;
         background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwNjY0NCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmU0MDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
         background-image: -moz-linear-gradient(left, #006644 0%, #ffe400 100%);
         background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, #006644), color-stop(100%, #ffe400));
@@ -390,6 +394,8 @@ h3 {
         background-image: -ms-linear-gradient(left, #006644 0%, #ffe400 100%);
         background-image: linear-gradient(to right, #006644 0%, #ffe400 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#006644', endColorstr='#ffe400',GradientType=1 ); }
+        .whiteBG input[type=button]:hover input {
+          border-color: #ffe400; }
     .whiteBG input[type=file] {
       margin-left: 32%;
       width: 66%;
@@ -690,8 +696,8 @@ h3 {
       content: "\25AE"; }
   .imageBG input[type=button] {
     color: #8cd6af;
-    background: #009966;
-    background-image: -webkit-linear-gradient(left, #8cd6af 0%, #8cd6af 100%);
+    background: #006644;
+    background-image: -webkit-linear-gradient(left, #b0f0cc 0%, #b0f0cc 100%);
     background-size: 100% 5px;
     background-position: 0 100%, 0 0;
     background-repeat: no-repeat; }
@@ -699,7 +705,11 @@ h3 {
       border-color: #8cd6af; }
     .imageBG input[type=button]:hover {
       color: #ffe400;
-      background-color: #006644;
+      background: #009966;
+      background-image: -webkit-linear-gradient(left, #ffe400 0%, #ffe400 100%);
+      background-size: 100% 5px;
+      background-position: 0 100%, 0 0;
+      background-repeat: no-repeat;
       background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwNjY0NCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmU0MDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
       background-image: -moz-linear-gradient(left, #006644 0%, #ffe400 100%);
       background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, #006644), color-stop(100%, #ffe400));
@@ -708,6 +718,8 @@ h3 {
       background-image: -ms-linear-gradient(left, #006644 0%, #ffe400 100%);
       background-image: linear-gradient(to right, #006644 0%, #ffe400 100%);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#006644', endColorstr='#ffe400',GradientType=1 ); }
+      .imageBG input[type=button]:hover input {
+        border-color: #ffe400; }
 .imageBG select {
   margin: 10px 2%;
   color: black;
@@ -891,6 +903,31 @@ a.btn {
     background-position: center top;
     background-repeat: no-repeat;
     background-attachment: fixed; }
+    #registration_form #welcome #idNumber {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 5px 15px;
+      background: rgba(0, 102, 68, 0.3);
+      opacity: 1;
+      transition: all 1s;
+      z-index: 500; }
+      #registration_form #welcome #idNumber span {
+        color: #ffe400;
+        letter-spacing: 4px;
+        font-family: monospace;
+        font-size: 1.6rem; }
+      #registration_form #welcome #idNumber a {
+        text-align: right;
+        float: right;
+        color: white; }
+        #registration_form #welcome #idNumber a:hover {
+          text-decoration: underline; }
+      #registration_form #welcome #idNumber.hidden {
+        opacity: 0;
+        display: block; }
+      #registration_form #welcome #idNumber.sticky {
+        padding: 18px 18px; }
     #registration_form #welcome img {
       margin: 20px 0; }
     #registration_form #welcome h1 {
@@ -958,6 +995,8 @@ a.btn {
             bottom: 58%;
             position: relative;
             cursor: initial; }
+          #registration_form #wizard div a .number.clock:after {
+            bottom: 82%; }
       #registration_form #wizard div h4 {
         display: none; }
       #registration_form #wizard div.unavailable {
@@ -983,14 +1022,15 @@ a.btn {
     -o-box-sizing: border-box; }
     #registration_form fieldset header legend {
       height: 50px;
-      font-size: 2rem;
       font-weight: 100;
       color: #ffe400;
       margin-left: 30px;
       padding: 0;
       line-height: 2.5rem;
       vertical-align: top;
-      overflow: hidden; }
+      overflow: hidden;
+      font-size: 1.6rem;
+      text-transform: uppercase; }
       #registration_form fieldset header legend strong {
         font-size: 4rem;
         font-weight: 900;
@@ -1031,11 +1071,23 @@ a.btn {
             #registration_form fieldset > section ol li.double select {
               width: 98%;
               margin: 10px 1%; }
+            #registration_form fieldset > section ol li.double span.inputs input[type=file] {
+              width: 82%;
+              margin-left: 14%;
+              margin-top: 0; }
+              #registration_form fieldset > section ol li.double span.inputs input[type=file]:before {
+                left: -160px; }
           #registration_form fieldset > section ol li.oneAndaHalf {
             width: 75%; }
             #registration_form fieldset > section ol li.oneAndaHalf select {
               width: 97%;
               margin: 10px 1.5%; }
+            #registration_form fieldset > section ol li.oneAndaHalf span.inputs input[type=file] {
+              width: 75%;
+              margin-left: 20%;
+              margin-top: 0; }
+              #registration_form fieldset > section ol li.oneAndaHalf span.inputs input[type=file]:before {
+                left: -160px; }
           #registration_form fieldset > section ol li.aHalf {
             width: 25%; }
             #registration_form fieldset > section ol li.aHalf select, #registration_form fieldset > section ol li.aHalf input {
@@ -1056,6 +1108,27 @@ a.btn {
     #registration_form fieldset.unavailable legend {
       color: #8cd6af; }
 
+section#overlay {
+  background: rgba(255, 255, 255, 0.5); }
+  section#overlay h1 {
+    text-align: center;
+    color: #8cd6af; }
+  section#overlay h2 {
+    color: #009966; }
+  section#overlay p {
+    color: #006644;
+    font-size: 1.2rem; }
+
+#Section7 {
+  padding-bottom: 80px; }
+  #Section7 section.finished h1 {
+    text-align: center; }
+  #Section7 section.finished h2 {
+    color: #b0f0cc; }
+  #Section7 section.finished p {
+    color: white;
+    font-size: 1.2rem; }
+
 footer {
   background: #006644;
   background-image: url(../img/front-green.jpg);
@@ -1063,4 +1136,10 @@ footer {
   background-position: center top;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  padding: 5px 0; }
+  padding: 10px 0;
+  text-align: center; }
+  footer a {
+    color: white;
+    text-decoration: none; }
+    footer a:hover {
+      text-decoration: underline; }
